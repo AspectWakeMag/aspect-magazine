@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Détection automatique de l'URL du backend
             const API_URL = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 
                 ? 'http://127.0.0.1:3000' 
-                : 'https://ton-api-backend.onrender.com'; // <--- Remplace par ton URL finale
+                : 'https://aspect-magazine-backend.onrender.com'; // <--- Ton URL Render ici
 
             try {
                 const itemsForBackend = cart.map(item => {

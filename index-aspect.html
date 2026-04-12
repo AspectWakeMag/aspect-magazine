@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspect Magazine - Numero 3</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/jpeg" href="images/icon-vague.jpg">
+</head>
+<body>
+    <main class="main-container" id="landing">
+        <!-- PARTIE GAUCHE : CARROUSEL -->
+        <section class="left-pane">
+            <div class="carousel" id="carousel">
+                <img src="images/DSC07588.jpg" class="carousel-img active" alt="Wakeboard 1">
+                <img src="images/DSC07340.jpg" class="carousel-img" alt="Wakeboard 2">
+                <img src="images/4E COUV.jpg" class="carousel-img" alt="Wakeboard 2">
+                <img src="images/DSC07337.jpg" class="carousel-img" alt="Wakeboard 2">
+            
+                
+            </div>
+            <div id="cursor-follower">See More</div>
+        </section>
+
+        <!-- PARTIE DROITE : CONTENU -->
+        <section class="right-pane">
+            <header class="header-grid">
+                <div class="col-1">
+                    <button id="toggle-aspect" class="btn-nav active">Aspect Numero 3</button>
+                    <div id="aspect-details" class="details-hidden open">
+                        <p>Cover by Detty Marie</p>
+                        <div class="details-row">
+                            <span id="page-counter">0</span> Pages
+                            <a href="product.html?id=mag3-fr" class="btn-nav">View in shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 align-right">
+                    <a href="cart.html" class="btn-nav">Cart (0)</a>
+                    <a href="#shop" class="btn-nav">Shop</a>
+                </div>
+                <div class="col-3 align-right">
+                    <a href="#about" class="btn-nav">About</a>
+                </div>
+            </header>
+
+            <div class="summary-container">
+                <div class="summary-grid" id="summary-list">
+                    <!-- Les items seront injectés ou animés ici -->
+                    <div class="summary-row"><span>Roatrdip</span><span>ROAD to LAO</span></div>
+                    <div class="summary-row"><span>Contest</span><span>LAO</span></div>
+                    <div class="summary-row"><span>Interview</span><span>Tino</span></div>
+                    <div class="summary-row"><span>Art</span><span>Soline Bourdon</span></div>
+                    <div class="summary-row"><span>Young Guns</span><span>Eva rivière</span></div>
+                    <div class="summary-row"><span>Interlude</span><span>Gottes Kinder</span></div>
+                    <div class="summary-row"><span>Industrie</span><span>Cabana Wakeskate</span></div>
+                    <div class="summary-row"><span>Portrait</span><span>Maxime Roux</span></div>
+                    <div class="summary-row"><span>Video Club</span><span>Spicy Tv</span></div>
+                    <div class="summary-row"><span>Interview</span><span>Enzo Asseraf</span></div>
+                    <div class="summary-row"><span>Portrait</span><span>Hervé Puyol</span></div>
+                    <div class="summary-row"><span>Impact</span><span>Prépa mentale, visualisation</span></div>
+                    <div class="summary-row"><span>Carte blanche</span><span>Max Evans</span></div>
+                    <div class="summary-row"><span>Récit</span><span>Jules Charraud, Winter Holidays</span></div>
+                    <div class="summary-row"><span>Video</span><span>Singularity project</span></div>
+                    <div class="summary-row"><span>Portfolio</span><span>Sam Strauss</span></div>
+                    <div class="summary-row"><span>Video</span><span>Vivid</span></div>
+                    <div class="summary-row"><span>La playlist d'un rider</span><span>Bobby Carne</span></div>
+                    <div class="summary-row"><span>Playground</span><span>Casse tête - Mots fléchés</span></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- SECTION SHOP AJOUTÉE EN DESSOUS -->
+    <main class="main-container shop-page" id="shop">
+        <!-- PARTIE GAUCHE : PRODUITS (Scrollable) -->
+        <section class="left-pane scrollable-pane">
+            <div class="product-grid">
+                <!-- Produit 1 -->
+                <a href="product.html?id=mag3-fr" class="product-item" style="color: inherit; text-decoration: none;">
+                    <img src="images/MAG 3 RECTO.jpg" alt="Magazine 3" class="product-image">
+                    <div class="product-info">
+                        <p>Aspect Numero 3</p>
+                        <p data-price-id="mag3"></p>
+                    </div>
+                </a>
+                <!-- Produit 2 -->
+                <a href="product.html?id=totebag" class="product-item" style="color: inherit; text-decoration: none;">
+                    <img src="images/TOTE BAG PACKSHOT.jpg" alt="Tote Bag" class="product-image">
+                    <div class="product-info">
+                        <p>Aspect OG ToteBag</p>
+                        <p data-price-id="totebag"></p>
+                    </div>
+                </a>
+                <!-- Produit 3 -->
+                <a href="product.html?id=mag2-fr" class="product-item" style="color: inherit; text-decoration: none;">
+                    <img src="images/MAG 2 RECTO.jpg" alt="Magazine 2" class="product-image">
+                    <div class="product-info">
+                        <p>Aspect Numero 2</p>
+                        <p data-price-id="mag2"></p>
+                    </div>
+                </a>
+                <!-- Produit 4 -->
+                <a href="product.html?id=mag1-fr" class="product-item" style="color: inherit; text-decoration: none;">
+                    <img src="images/MAG 1 RECTO.jpg" alt="Magazine 1" class="product-image">
+                    <div class="product-info">
+                        <p>Aspect Numero 1</p>
+                        <p data-price-id="mag1"></p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- PARTIE DROITE : HEADER SHOP -->
+        <section class="right-pane">
+            <header class="header-grid">
+                <div class="col-1">
+                    <a href="#landing" class="btn-nav">Aspect Numero 3</a>
+                </div>
+                <div class="col-2 align-right">
+                    <a href="cart.html" class="btn-nav">Cart (0)</a>
+                    <a href="#shop" class="btn-nav active">Shop</a>
+                </div>
+                <div class="col-3 align-right">
+                    <a href="#about" class="btn-nav">About</a>
+                </div>
+            </header>
+        </section>
+    </main>
+
+    <!-- SECTION ABOUT -->
+    <main class="main-container about-page" id="about">
+        <section class="left-pane about-left">
+            <p class="animate-text">We explore wakeboarding culture in all its dimensions. Every detail matters; every movement is observed with precision. Our aim is to reveal the beauty within and offer you the most authentic reflection of this culture.</p>
+        </section>
+
+        <section class="right-pane about-right">
+            <header class="header-grid">
+                <div class="col-1">
+                    <a href="#landing" class="btn-nav">Aspect Numero 3</a>
+                </div>
+                <div class="col-2 align-right">
+                    <a href="cart.html" class="btn-nav">Cart (0)</a>
+                    <a href="#shop" class="btn-nav">Shop</a>
+                </div>
+                <div class="col-3 align-right">
+                    <a href="#about" class="btn-nav active">About</a>
+                </div>
+            </header>
+            <div class="about-content">
+                <p>
+                    <span class="animate-text">We are an independent magazine, driven by passion. Your support is our greatest reward—don’t hesitate to collaborate with us.</span>
+                    <a href="mailto:aspectwakemag@gmail.com" class="btn-nav animate-text">aspectwakemag@gmail.com</a>
+                    <a href="https://www.instagram.com/aspectwakemag/" target="_blank" class="btn-nav animate-text">@aspectwakemag</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

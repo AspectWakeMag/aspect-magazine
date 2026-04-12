@@ -1,0 +1,8 @@
+# Dépendances
+node_modules/
+
+# Sécurité
+.env
+
+# OS
+.DS_Store

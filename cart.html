@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspect Magazine - Cart</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/jpeg" href="images/icon-vague.jpg">
+</head>
+<body class="cart-page">
+    <main class="main-container">
+        <!-- PARTIE GAUCHE -->
+        <section class="left-pane scrollable-pane">
+            <div class="product-nav">
+                <a href="index-aspect.html#shop" class="btn-nav">← Back to shop</a>
+            </div>
+
+            <div class="cart-items-container">
+                <!-- Exemple Produit FR -->
+                <div class="cart-item">
+                    <hr class="cart-line">
+                    <div class="item-grid">
+                        <img src="images/MAG 3 RECTO.jpg" class="item-img" alt="Magazine 3 FR">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <span>Aspect Numero 3 (FR)</span>
+                                <span class="item-price">15,00 €</span>
+                            </div>
+                            <button class="btn-nav">Delete</button>
+                        </div>
+                        <div class="item-bottom">
+                            <div class="item-quantity">
+                                <span>Quantity</span>
+                                <button class="btn-nav">-</button>
+                                <span>1</span>
+                                <button class="btn-nav">+</button>
+                            </div>
+                            <div class="item-subtotal">Subtotal 15,00 €</div>
+                        </div>
+                    </div>
+                    <hr class="cart-line">
+                </div>
+
+                <!-- Exemple Produit EN -->
+                <div class="cart-item">
+                    <div class="item-grid">
+                        <img src="images/MAG 3 RECTO.jpg" class="item-img" alt="Magazine 3 EN">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <span>Aspect Numero 3 (EN)</span>
+                                <span class="item-price">15,00 €</span>
+                            </div>
+                            <button class="btn-nav">Delete</button>
+                        </div>
+                        <div class="item-bottom">
+                            <div class="item-quantity">
+                                <span>Quantity</span>
+                                <button class="btn-nav">-</button>
+                                <span>1</span>
+                                <button class="btn-nav">+</button>
+                            </div>
+                            <div class="item-subtotal">Subtotal 15,00 €</div>
+                        </div>
+                    </div>
+                    <hr class="cart-line">
+                </div>
+            </div>
+        </section>
+
+        <!-- PARTIE DROITE -->
+        <section class="right-pane cart-right-pane">
+            <header class="header-grid">
+                <div class="col-1">
+                    <a href="index-aspect.html#landing" class="btn-nav">Aspect Numero 3</a>
+                </div>
+                <div class="col-2 align-right">
+                    <a href="cart.html" class="btn-nav active">Cart (0)</a>
+                    <a href="index-aspect.html#shop" class="btn-nav">Shop</a>
+                </div>
+                <div class="col-3 align-right">
+                    <a href="index-aspect.html#about" class="btn-nav">About</a>
+                </div>
+            </header>
+
+            <div class="recap-section">
+                <hr class="cart-line">
+                <div class="recap-grid">
+                    <div class="col-1">Summary</div>
+                    <div class="col-2">Total</div>
+                    <div class="col-3 align-right">30,00 €</div>
+                    <div class="col-1"></div>
+                    <div class="col-2">Shipping</div>
+                    <div class="col-3 align-right">Next step</div>
+                </div>
+                <hr class="cart-line">
+                <div class="recap-footer align-right">
+                    <button class="btn-nav active">Continue to shipping infos →</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

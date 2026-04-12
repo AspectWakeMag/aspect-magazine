@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 overlay.classList.remove('visible');
                 document.body.classList.remove('modal-open');
                 // Nettoie l'URL pour éviter que le pop-up revienne au refresh
-                window.history.replaceState({}, document.title, window.location.pathname);
+                window.history.replaceState({}, document.title, "/");
                 setTimeout(() => overlay.remove(), 400);
             }
         };

@@ -66,7 +66,7 @@ app.post('/create-checkout-session', async (req, res) => {
             payment_method_types: ['card'],
             mode: 'payment',
             line_items,
-            success_url: `${FRONTEND_URL}/index-aspect.html?status=success&order_number=${orderNumber}`,
+            success_url: `${FRONTEND_URL}/index.html?status=success&order_number=${orderNumber}`,
             cancel_url: `${FRONTEND_URL}/cart.html`,
 
             // Inclure le numéro de commande dans les métadonnées pour ton suivi Stripe

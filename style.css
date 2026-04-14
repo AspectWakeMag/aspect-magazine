@@ -550,7 +550,7 @@ a[href="cart.html"].btn-nav:not(.active) {
     .btn-nav-cart,
     #lang-selector,
     .btn-checkout {
-        font-size: 13pt !important;
+        font-size: 12pt !important;
     }
 
     .header-grid {

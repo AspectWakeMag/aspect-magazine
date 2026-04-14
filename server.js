@@ -82,14 +82,14 @@ app.post('/create-checkout-session', async (req, res) => {
                 ],
             },
             
-            // En utilisant les IDs de ton Dashboard, Stripe basculera le prix
-            // automatiquement selon l'adresse saisie.
+            // Utilisation des identifiants Shipping Rates du Dashboard
+            // Stripe sélectionnera automatiquement le bon tarif selon le pays
             shipping_options: [
-                { shipping_rate: 'shr_1TM1RnHc9K6ONRvomamTK7TZ' }, // Remplace par ton ID réel (ex: shr_1P2...)
-                { shipping_rate: 'shr_1TM1S9Hc9K6ONRvoQFhiPXHT' }  // Remplace par ton ID réel
+                { shipping_rate: 'shr_1TM1RnHc9K6ONRvomamTK7TZ' }, // France 8€
+                { shipping_rate: 'shr_1TM1S9Hc9K6ONRvoQFhiPXHT' }  // Europe 20€
             ],
 
-            // Activer la création automatique de facture/reçu (envoie un mail de confirmation avec PDF)
+            // Création automatique de facture/reçu
             invoice_creation: {
                 enabled: true,
                 invoice_data: {

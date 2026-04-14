@@ -199,7 +199,7 @@ a[href="cart.html"].btn-nav:not(.active) {
     background: none;
     border: none;
     font-family: inherit;
-    font-size: 12pt; /* Taille par défaut du body */
+    font-size: inherit; /* Taille par défaut du body */
     font-weight: 899;
     color: inherit;
     cursor: pointer;
@@ -209,15 +209,15 @@ a[href="cart.html"].btn-nav:not(.active) {
 }
 
 /* Boutons spécifiques à agrandir (20pt Desktop / 15pt Mobile) */
-.btn-nav-cart, 
-.lang-selector,
+.btn-nav-cart,
+#lang-selector,
 .btn-checkout {
-    font-size: 20pt !important;
+    font-size: 17pt !important;
     font-weight: 899;
 }
 
-.lang-selector {
-    opacity: 1;
+#lang-selector .btn-nav {
+    font-size: inherit; /* Pour que FR/EN suivent la taille du parent #lang-selector */
 }
 
 .btn-nav:hover, .btn-nav.active {
@@ -300,8 +300,8 @@ a[href="cart.html"].btn-nav:not(.active) {
 }
 
 .product-nav {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 10px;    /* Aligné avec le header */
+    margin-bottom: 10px; /* Espace avant le carrousel */
     padding-left: 10px;
 }
 
@@ -547,10 +547,10 @@ a[href="cart.html"].btn-nav:not(.active) {
         font-weight: 899;
     }
 
-    .btn-nav-cart, 
-    .lang-selector,
+    .btn-nav-cart,
+    #lang-selector,
     .btn-checkout {
-        font-size: 15pt !important;
+        font-size: 13pt !important;
     }
 
     .header-grid {

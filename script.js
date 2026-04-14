@@ -421,10 +421,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // 2. On réactive la transition et on lance l'animation
                 nextImg.style.transition = '';
+                nextImg.classList.add('active');
                 nextImg.style.transform = ''; // Laisse le CSS reprendre la main
                 prevImg.classList.add('exit-right');
                 prevImg.classList.remove('active');
-                nextImg.classList.add('active');
             }
 
             setTimeout(() => {
@@ -432,6 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 prevImg.classList.remove('exit');
                 prevImg.classList.remove('exit-right');
                 requestAnimationFrame(() => {
+                    nextImg.style.transform = ''; 
                     requestAnimationFrame(() => prevImg.style.transition = '');
                 });
                 isTransitioning = false;
@@ -452,9 +453,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setInterval(() => showSlide(1), autoPlayDelay);
         }
     }
-
-    initCarousel('carousel', 2000); // Auto-play 2s pour la landing
-    initCarousel('product-carousel');
 
     const follower = document.getElementById('cursor-follower');
 
@@ -647,10 +645,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- INITIALISATION ---
     // Active la section par défaut au chargement
-    const initialHash = window.location.hash || '#landing';
-    switchSection(initialHash);
+     if (document.getElementById('landing')) {
+        initCarousel('carousel', 2000); // Uniquement sur la landing
+        const initialHash = window.location.hash || '#landing';
+        switchSection(initialHash);
+     }
 
-    initCarousel('carousel');
     initProductPage();
     syncPrices();
     updateCartUI();

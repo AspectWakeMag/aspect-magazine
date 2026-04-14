@@ -199,7 +199,7 @@ a[href="cart.html"].btn-nav:not(.active) {
     background: none;
     border: none;
     font-family: inherit;
-    font-size: 20px; /* Taille augmentée sur Desktop */
+    font-size: 12pt; /* Taille par défaut du body */
     font-weight: 899;
     color: inherit;
     cursor: pointer;
@@ -208,9 +208,15 @@ a[href="cart.html"].btn-nav:not(.active) {
     padding: 0;
 }
 
-.lang-selector {
-    font-size: 20px;
+/* Boutons spécifiques à agrandir (20pt Desktop / 15pt Mobile) */
+.btn-nav-cart, 
+.lang-selector,
+.btn-checkout {
+    font-size: 20pt !important;
     font-weight: 899;
+}
+
+.lang-selector {
     opacity: 1;
 }
 
@@ -294,8 +300,9 @@ a[href="cart.html"].btn-nav:not(.active) {
 }
 
 .product-nav {
-    height: auto;
-    padding: 10px 0 0 10px; /* 10px en haut et 10px à gauche */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
 }
 
 .product-carousel {
@@ -537,12 +544,13 @@ a[href="cart.html"].btn-nav:not(.active) {
     }
 
     .btn-nav-cart {
-        font-size: 15px;
-        font-weight: 899; /* Taille réduite sur Mobile */
+        font-weight: 899;
     }
 
-    .lang-selector {
-        font-size: 10px;
+    .btn-nav-cart, 
+    .lang-selector,
+    .btn-checkout {
+        font-size: 15pt !important;
     }
 
     .header-grid {

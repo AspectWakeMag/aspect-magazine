@@ -399,6 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isTransitioning = true;
 
             const prevImg = images[currentImg];
+            // Calcul de l'index avec bouclage
             if (direction === 1) {
                 currentImg = (currentImg + 1) % images.length;
             } else {
@@ -407,16 +408,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const nextImg = images[currentImg];
 
             if (direction === 1) {
+                // Marche avant (Slide vers la gauche)
                 prevImg.classList.add('exit');
                 prevImg.classList.remove('active');
                 nextImg.classList.add('active');
             } else {
-                // Retour arrière : on place l'image à gauche sans transition avant de l'animer
+                // Marche arrière (Slide vers la droite)
+                // 1. On place l'image entrante à gauche instantanément
                 nextImg.style.transition = 'none';
                 nextImg.style.transform = 'translateX(-100%)';
-                nextImg.offsetHeight; // Force le reflow
-                
+                nextImg.offsetHeight; // Force le rendu (reflow)
+
+                // 2. On réactive la transition et on lance l'animation
                 nextImg.style.transition = '';
+                nextImg.style.transform = ''; // Laisse le CSS reprendre la main
                 prevImg.classList.add('exit-right');
                 prevImg.classList.remove('active');
                 nextImg.classList.add('active');

@@ -82,47 +82,11 @@ app.post('/create-checkout-session', async (req, res) => {
                 ],
             },
             
+            // En utilisant les IDs de ton Dashboard, Stripe basculera le prix
+            // automatiquement selon l'adresse saisie.
             shipping_options: [
-                {
-                    shipping_rate_data: {
-                        type: 'fixed_amount',
-                        fixed_amount: {
-                            amount: 800, // 8€ en centimes
-                            currency: 'eur',
-                        },
-                        display_name: 'Livraison France',
-                        delivery_estimate: {
-                            minimum: {
-                                unit: 'business_day',
-                                value: 3,
-                            },
-                            maximum: {
-                                unit: 'business_day',
-                                value: 7,
-                            },
-                        }
-                    }
-                },
-                {
-                    shipping_rate_data: {
-                        type: 'fixed_amount',
-                        fixed_amount: {
-                            amount: 2000, // 20€ en centimes
-                            currency: 'eur',
-                        },
-                        display_name: 'Livraison Europe',
-                        delivery_estimate: {
-                            minimum: {
-                                unit: 'business_day',
-                                value: 5,
-                            },
-                            maximum: {
-                                unit: 'business_day',
-                                value: 14,
-                            },
-                        }
-                    }
-                }
+                { shipping_rate: 'shr_1TM1RnHc9K6ONRvomamTK7TZ' }, // Remplace par ton ID réel (ex: shr_1P2...)
+                { shipping_rate: 'shr_1TM1S9Hc9K6ONRvoQFhiPXHT' }  // Remplace par ton ID réel
             ],
 
             // Activer la création automatique de facture/reçu (envoie un mail de confirmation avec PDF)

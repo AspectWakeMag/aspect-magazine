@@ -533,6 +533,11 @@ a[href="cart.html"].btn-nav:not(.active) {
         height: 50dvh;
         z-index: 1;
         padding: 0;
+        cursor: auto; /* Réactive le curseur par défaut sur mobile */
+    }
+
+    #cursor-follower {
+        display: none; /* Désactive le "See more" sur mobile */
     }
 
     .right-pane {
@@ -550,7 +555,7 @@ a[href="cart.html"].btn-nav:not(.active) {
     .btn-nav-cart,
     #lang-selector,
     .btn-checkout {
-        font-size: 12pt !important;
+        font-size: inherit !important; /* Force la taille à 9pt comme le body mobile */
     }
 
     .header-grid {

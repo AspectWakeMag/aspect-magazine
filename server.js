@@ -9,13 +9,16 @@ app.use(express.json());
 app.use(cors());
 
 // L'URL du site sera définie par l'hébergeur (ex: https://ton-site.com)
-const FRONTEND_URL = process.env.FRONTEND_URL || 'https://aspect-magazine.vercel.app/index.html#landing';
+// IMPORTANT : On garde uniquement la racine pour éviter les erreurs de redirection
+const FRONTEND_URL = process.env.FRONTEND_URL || 'https://aspect-magazine.vercel.app';
 
 const PRODUCTS_PRICE_MAP = {
-    mag3: 1500,
-    mag2: 1000,
-    mag1: 1000,
-    totebag: 1500
+    // Cartographie précise des 5 articles avec leurs Price IDs respectifs
+    'mag3-fr': 'price_1TM4AwHc9K6ONRvog5MPHyKj',
+    'mag3-en': 'price_1TM4BZHc9K6ONRvosH3nqMcy',
+    'mag2-fr': 'price_1TM97KHc9K6ONRvobkL3fTEU',
+    'mag1-fr': 'price_1TM9AqHc9K6ONRvoBZn28US4',
+    'totebag': 'price_1TM9BQHc9K6ONRvoYGyx8gv5'
 };
 
 app.post('/create-checkout-session', async (req, res) => {
@@ -29,34 +32,25 @@ app.post('/create-checkout-session', async (req, res) => {
         // Générer un numéro de commande unique
         const orderNumber = `CMD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
-        const line_items = items.map(item => {
-            const baseId = item.id.split('-')[0];
-            const unitAmount = PRODUCTS_PRICE_MAP[baseId];
+        const line_items = items
+            .filter(item => item && item.id) // Sécurité : ignore les items mal formés
+            .map(item => {
+                const stripePriceId = PRODUCTS_PRICE_MAP[item.id];
 
-            if (!unitAmount) {
-                throw new Error(`Produit inconnu: ${item.id}`);
-            }
+                if (!stripePriceId) {
+                    console.error(`Erreur: Pas de Price ID trouvé pour l'article "${item.id}"`);
+                    throw new Error(`Produit non reconnu ou indisponible : ${item.id}`);
+                }
 
-            // Stripe exige des URLs absolues pour les images.
-            // On utilise encodeURI pour s'assurer que l'URL est bien formée (espaces, etc.)
-            const imageUrls = [];
-            if (item.image) {
-                const absoluteUrl = encodeURI(`${FRONTEND_URL}/${item.image}`);
-                imageUrls.push(absoluteUrl);
-            }
+                return {
+                    price: stripePriceId,
+                    quantity: item.quantity || 1
+                };
+            });
 
-            return {
-                price_data: {
-                    currency: 'eur',
-                    product_data: {
-                        name: `${item.name} (${item.variant})`,
-                        images: imageUrls
-                    },
-                    unit_amount: unitAmount
-                },
-                quantity: item.quantity
-            };
-        });
+        if (line_items.length === 0) {
+            return res.status(400).json({ error: 'Le panier est vide' });
+        }
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],

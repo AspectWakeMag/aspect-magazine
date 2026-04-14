@@ -483,20 +483,25 @@ a[href="cart.html"].btn-nav:not(.active) {
     }
     .left-pane, .right-pane {
         flex: 0 0 auto;
-        height: 50dvh; /* Force la moitié exacte de l'espace visible */
+        height: 50dvh !important; /* Force la moitié exacte de l'espace visible sur toutes les pages */
         width: 100%;
         position: relative;
         background-color: #fff;
-    }
-
-    #landing .right-pane, #about .right-pane {
-        height: 50dvh;
     }
 
     body {
         overflow-y: hidden; /* Autorise le scroll entre les conteneurs main sur mobile */
         font-size: 9pt;
         line-height: 10pt;
+    }
+
+    /* Correction du bouton Back to Shop pour ne pas décaler le reste */
+    .product-nav {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 100;
+        padding: 0 !important;
     }
 
     /* GESTION COMMUNE DES PANNEAUX */
@@ -514,12 +519,12 @@ a[href="cart.html"].btn-nav:not(.active) {
     }
 
     .header-grid {
-        position: sticky;
+        position: sticky; /* Fixe la barre au "centre" (sommet du panneau du bas) */
         top: 0;
         background: #fff; /* Fond opaque pour ne pas voir le texte défiler dessous */
-        z-index: 100;
+        z-index: 110;
         padding-bottom: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 0px;
     }
 
     /* LANDING PAGE MOBILE */
@@ -530,17 +535,30 @@ a[href="cart.html"].btn-nav:not(.active) {
 
     /* PRODUCT PAGE MOBILE */
     .product-page .product-left {
-        height: 50vh;
+        height: 50dvh;
         position: relative;
     }
 
     .product-page .carousel {
-        top: 40px; /* 10px padding + ~20px text + 10px gap */
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
-        width: auto; /* Override le 100% global */
-        height: auto; /* Override le 100% global */
+        top: 0; /* Suppression du décalage pour coller au bord haut */
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Réactivation de la scrollbar pour le Shop en mobile */
+    .shop-page .scrollable-pane {
+        scrollbar-width: thin !important;
+        -ms-overflow-style: auto !important;
+    }
+    .shop-page .scrollable-pane::-webkit-scrollbar {
+        display: block !important;
+        width: 3px;
+    }
+    .shop-page .scrollable-pane::-webkit-scrollbar-thumb {
+        background: #000;
     }
 
     .product-grid {

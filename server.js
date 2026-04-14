@@ -29,10 +29,6 @@ app.post('/create-checkout-session', async (req, res) => {
         // Générer un numéro de commande unique
         const orderNumber = `CMD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
-        // Vérifier si la commande contient le Magazine Numero 3 (précommande)
-        const hasPreorder = items.some(item => item.id.startsWith('mag3'));
-        const shippingName = hasPreorder ? 'Livraison Précommande (Juin 2026)' : 'Livraison Standard (7 jours ouvrés)';
-
         const line_items = items.map(item => {
             const baseId = item.id.split('-')[0];
             const unitAmount = PRODUCTS_PRICE_MAP[baseId];
@@ -69,26 +65,62 @@ app.post('/create-checkout-session', async (req, res) => {
             success_url: `${FRONTEND_URL}/index.html?status=success&order_number=${orderNumber}`,
             cancel_url: `${FRONTEND_URL}/cart.html`,
 
-            // Inclure le numéro de commande dans les métadonnées pour ton suivi Stripe
             metadata: {
-                order_number: orderNumber
+                order_number: orderNumber,
+                products: JSON.stringify(items.map(item => ({ 
+                    name: `${item.name} (${item.variant})`,
+                    quantity: item.quantity
+                })))
             },
             
-            // Collecte de l'adresse de livraison (restreinte à la France)
             shipping_address_collection: {
-                allowed_countries: ['FR'],
+                allowed_countries: [
+                    'FR', 'DE', 'IT', 'ES', 'BE', 'NL', 'AT', 'PT', 'IE', 
+                    'LU', 'FI', 'DK', 'SE', 'NO', 'CH', 'PL', 'CZ', 
+                    'HU', 'SK', 'SI', 'HR', 'BG', 'RO', 'EE', 'LV', 
+                    'LT', 'CY', 'MT', 'GR'
+                ],
             },
             
-            // Option de livraison fixe à 5€
             shipping_options: [
                 {
                     shipping_rate_data: {
                         type: 'fixed_amount',
                         fixed_amount: {
-                            amount: 500, // 5€ en centimes
+                            amount: 800, // 8€ en centimes
                             currency: 'eur',
                         },
-                        display_name: shippingName,
+                        display_name: 'Livraison France',
+                        delivery_estimate: {
+                            minimum: {
+                                unit: 'business_day',
+                                value: 3,
+                            },
+                            maximum: {
+                                unit: 'business_day',
+                                value: 7,
+                            },
+                        }
+                    }
+                },
+                {
+                    shipping_rate_data: {
+                        type: 'fixed_amount',
+                        fixed_amount: {
+                            amount: 2000, // 20€ en centimes
+                            currency: 'eur',
+                        },
+                        display_name: 'Livraison Europe',
+                        delivery_estimate: {
+                            minimum: {
+                                unit: 'business_day',
+                                value: 5,
+                            },
+                            maximum: {
+                                unit: 'business_day',
+                                value: 14,
+                            },
+                        }
                     }
                 }
             ],

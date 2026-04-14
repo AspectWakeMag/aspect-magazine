@@ -379,37 +379,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- CARROUSEL ---
-    function initCarousel(carouselId) {
+   function initCarousel(carouselId, autoPlayDelay = 0) {
         const carousel = document.getElementById(carouselId);
         if (!carousel) return;
         
         const images = carousel.querySelectorAll('.carousel-img');
+        if (images.length < 2) return;
         let currentImg = 0;
+        let isTransitioning = false;
 
-        carousel.addEventListener('click', () => {
+        const nextSlide = () => {
+            if (isTransitioning) return;
+            isTransitioning = true;
+
         const prevImg = images[currentImg];
-        currentImg = (currentImg + 1) % images.length;
-        const nextImg = images[currentImg];
+            currentImg = (currentImg + 1) % images.length;
+            const nextImg = images[currentImg];
+
 
         prevImg.classList.add('exit');
-        prevImg.classList.remove('active');
-
-        nextImg.classList.add('active');
+            prevImg.classList.remove('active');
+            nextImg.classList.add('active');
 
         setTimeout(() => {
-            // Désactiver temporairement la transition pour repositionner l'image instantanément
-            prevImg.style.transition = 'none';
-            prevImg.classList.remove('exit');
-            // Réactiver la transition après un court délai pour les futures animations
-            // Utilisation de requestAnimationFrame pour s'assurer que le navigateur a eu le temps de repeindre
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => prevImg.style.transition = '');
-            });
-        }, 1000); // Nettoyage après la transition de 1s
-        });
+                prevImg.style.transition = 'none';
+                prevImg.classList.remove('exit');
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => prevImg.style.transition = '');
+                });
+                isTransitioning = false;
+            }, 1000);
+        };
+
+        carousel.addEventListener('click', nextSlide);
+
+        // Auto-play uniquement si demandé et sur mobile
+        if (autoPlayDelay > 0 && window.innerWidth <= 1100) {
+            setInterval(nextSlide, autoPlayDelay);
+        }
     }
 
-    initCarousel('carousel');
+    initCarousel('carousel', 2000); // Auto-play 2s pour la landing
     initCarousel('product-carousel');
 
     const follower = document.getElementById('cursor-follower');

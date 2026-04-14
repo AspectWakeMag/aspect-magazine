@@ -37,6 +37,13 @@ body {
     display: flex; /* Affiche uniquement la section active */
 }
 
+/* Assure la visibilité sur les pages indépendantes */
+.product-page .main-container,
+.cart-page .main-container {
+    display: flex;
+}
+
+
 /* GAUCHE : CARROUSEL */
 .left-pane {
     flex: 0 0 50%;

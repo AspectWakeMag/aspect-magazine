@@ -80,7 +80,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('p-specs').innerHTML = `<p>${formattedSpecs}</p>`;
         
         const carousel = document.getElementById('product-carousel');
-        carousel.innerHTML = product.images.map((img, i) => `<img src="${img}" class="carousel-img ${i===0?'active':''}" alt="Image ${i}">`).join('');
+        let carouselHtml = product.images.map((img, i) => `<img src="${img}" class="carousel-img ${i===0?'active':''}" alt="Image ${i}">`).join('');
+        
+        // Ajout des flèches de navigation
+        carouselHtml += `<button class="carousel-arrow prev">←</button>`;
+        carouselHtml += `<button class="carousel-arrow next">→</button>`;
+        
+        carousel.innerHTML = carouselHtml;
         initCarousel('product-carousel');
 
         if (product.summary) {
@@ -388,34 +394,52 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentImg = 0;
         let isTransitioning = false;
 
-        const nextSlide = () => {
+        const showSlide = (direction = 1) => {
             if (isTransitioning) return;
             isTransitioning = true;
 
         const prevImg = images[currentImg];
-            currentImg = (currentImg + 1) % images.length;
+            if (direction === 1) {
+                currentImg = (currentImg + 1) % images.length;
+            } else {
+                currentImg = (currentImg - 1 + images.length) % images.length;
+            }
             const nextImg = images[currentImg];
 
 
         prevImg.classList.add('exit');
             prevImg.classList.remove('active');
+            
+            // Si on recule, on positionne l'image à gauche avant l'entrée
+            if (direction === -1) {
+                nextImg.style.transform = 'translateX(-100%)';
+            }
+            
             nextImg.classList.add('active');
 
         setTimeout(() => {
                 prevImg.style.transition = 'none';
                 prevImg.classList.remove('exit');
                 requestAnimationFrame(() => {
+                    nextImg.style.transform = ''; // Reset position forcée
                     requestAnimationFrame(() => prevImg.style.transition = '');
                 });
                 isTransitioning = false;
             }, 1000);
         };
 
-        carousel.addEventListener('click', nextSlide);
+        // Gestion des clics sur les flèches ou le conteneur
+        carousel.addEventListener('click', (e) => {
+            if (e.target.classList.contains('prev')) {
+                showSlide(-1);
+            } else {
+                showSlide(1);
+            }
+        });
 
         // Auto-play uniquement si demandé et sur mobile
         if (autoPlayDelay > 0 && window.innerWidth <= 1100) {
-            setInterval(nextSlide, autoPlayDelay);
+            setInterval(() => showSlide(1), autoPlayDelay);
         }
     }
 

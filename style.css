@@ -195,7 +195,7 @@ a[href="cart.html"].btn-nav:not(.active) {
     background: none;
     border: none;
     font-family: inherit;
-    font-size: inherit;
+    font-size: 20px; /* Taille augmentée sur Desktop */
     font-weight: inherit;
     color: inherit;
     cursor: pointer;
@@ -512,10 +512,15 @@ a[href="cart.html"].btn-nav:not(.active) {
     }
 
     .right-pane {
-        padding: 10px;
+        padding: 0 10px 10px 10px; /* Suppression du padding top pour coller au carrousel */
         z-index: 2;
         box-shadow: 0 -10px 30px rgba(255,255,255,0.8);
         overflow-y: auto; /* Permet de scroller le contenu interne (sommaire, etc.) */
+        gap: 20px; /* Réduction de l'espace global (était à 40px) */
+    }
+
+    .btn-nav-cart {
+        font-size: 15px; /* Taille réduite sur Mobile */
     }
 
     .header-grid {
@@ -523,7 +528,8 @@ a[href="cart.html"].btn-nav:not(.active) {
         top: 0;
         background: #fff; /* Fond opaque pour ne pas voir le texte défiler dessous */
         z-index: 110;
-        padding-bottom: 10px;
+        padding-top: 10px; /* On remet le padding ici pour que le fond blanc couvre tout */
+        padding-bottom: 5px;
         margin-bottom: 0px;
     }
 
@@ -534,6 +540,10 @@ a[href="cart.html"].btn-nav:not(.active) {
     }
 
     /* PRODUCT PAGE MOBILE */
+    .product-page .product-nav {
+        display: none; /* Suppression du bouton back to shop sur mobile */
+    }
+
     .product-page .product-left {
         height: 50dvh;
         position: relative;
@@ -607,6 +617,23 @@ a[href="cart.html"].btn-nav:not(.active) {
         line-height: 30px;
     }
 }
+
+/* FLÈCHES CARROUSEL */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 100;
+    mix-blend-mode: difference;
+    padding: 20px;
+}
+.carousel-arrow.prev { left: 0; }
+.carousel-arrow.next { right: 0; }
 
 @media (min-width: 1101px) {
     .about-right {

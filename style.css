@@ -186,7 +186,7 @@ a[href="cart.html"].btn-nav:not(.active) {
     background: none;
     border: none;
     font-family: inherit;
-    font-size: 12pt;
+    font-size: inherit; /* Hérite de la taille du body (12pt desktop / 9pt mobile) */
     font-weight: inherit;
     color: inherit;
     cursor: pointer;
@@ -555,7 +555,7 @@ a[href="cart.html"].btn-nav:not(.active) {
     .btn-nav-cart,
     #lang-selector,
     .btn-checkout {
-        font-size: inherit !important; /* Force la taille à 9pt comme le body mobile */
+        font-size: 12pt !important; /* Taille "affirmée" pour mobile (plus gros que le 9pt) */
     }
 
     .header-grid {

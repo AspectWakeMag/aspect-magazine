@@ -212,7 +212,7 @@ a[href="cart.html"].btn-nav:not(.active) {
 .btn-nav-cart,
 #lang-selector,
 .btn-checkout {
-    font-size: 17pt !important;
+    font-size: 15pt !important;
     font-weight: 899;
 }
 

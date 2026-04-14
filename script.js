@@ -556,19 +556,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- NAVIGATION VERROUILLÉE ---
-    // Gère le passage d'une section à l'autre via les liens du header uniquement
+    // Remplace le scroll par un système de switch de section (SPA)
     const navLinks = document.querySelectorAll('a[href^="#"]');
     
+    function switchSection(targetId) {
+        const sections = document.querySelectorAll('.main-container');
+        sections.forEach(s => s.classList.remove('active'));
+        
+        const target = document.querySelector(targetId);
+        if (target) {
+            target.classList.add('active');
+            // Réinitialise le scroll du panneau de droite au changement
+            const rightPane = target.querySelector('.right-pane');
+            if (rightPane) rightPane.scrollTop = 0;
+        }
+    }
+
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
             const targetId = link.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
+            if (targetId.startsWith('#')) {
+                e.preventDefault();
+                history.pushState(null, null, targetId);
+                switchSection(targetId);
             }
         });
+    });
+
+    // Gère le bouton "Retour" du navigateur
+    window.addEventListener('popstate', () => {
+        const hash = window.location.hash || '#landing';
+        switchSection(hash);
     });
 
     // --- PRODUCT PAGE TOGGLE ---
@@ -584,6 +602,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- INITIALISATION ---
+    // Active la section par défaut au chargement
+    const initialHash = window.location.hash || '#landing';
+    switchSection(initialHash);
+
     initCarousel('carousel');
     initProductPage();
     syncPrices();

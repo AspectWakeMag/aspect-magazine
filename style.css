@@ -27,10 +27,14 @@ body {
 }
 
 .main-container {
-    display: flex;
+    display: none; /* Cache les sections par défaut */
     height: 100dvh; /* Utilise la hauteur dynamique pour éviter les décalages sur mobile */
     width: 100vw;
     flex-shrink: 0;
+}
+
+.main-container.active {
+    display: flex; /* Affiche uniquement la section active */
 }
 
 /* GAUCHE : CARROUSEL */
@@ -467,7 +471,7 @@ a[href="cart.html"].btn-nav:not(.active) {
 @media (max-width: 1100px) {
     .main-container {
         flex-direction: column;
-        overflow-y: visible; /* On laisse le body gérer le scroll pour la navigation entre sections */
+        overflow-y: hidden; /* On laisse le body gérer le scroll pour la navigation entre sections */
         height: 100dvh;
     }
     .left-pane, .right-pane {
@@ -483,7 +487,7 @@ a[href="cart.html"].btn-nav:not(.active) {
     }
 
     body {
-        overflow-y: auto; /* Autorise le scroll entre les conteneurs main sur mobile */
+        overflow-y: hidden; /* Autorise le scroll entre les conteneurs main sur mobile */
         font-size: 9pt;
         line-height: 10pt;
     }

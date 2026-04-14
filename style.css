@@ -136,6 +136,10 @@ a.btn-nav {
     transform: translateX(-100%);
 }
 
+.carousel-img.exit-right {
+    transform: translateX(100%);
+}
+
 /* DROITE : CONTENU */
 .right-pane {
     flex: 0 0 50%;
@@ -182,7 +186,7 @@ a[href="cart.html"].btn-nav:not(.active) {
     background: none;
     border: none;
     font-family: inherit;
-    font-size: inherit;
+    font-size: 20px;
     font-weight: inherit;
     color: inherit;
     cursor: pointer;
@@ -196,12 +200,18 @@ a[href="cart.html"].btn-nav:not(.active) {
     border: none;
     font-family: inherit;
     font-size: 20px; /* Taille augmentée sur Desktop */
-    font-weight: inherit;
+    font-weight: 899;
     color: inherit;
     cursor: pointer;
     opacity: 1;
     transition: opacity 0.2s ease;
     padding: 0;
+}
+
+.lang-selector {
+    font-size: 20px;
+    font-weight: 899;
+    opacity: 1;
 }
 
 .btn-nav:hover, .btn-nav.active {
@@ -289,7 +299,7 @@ a[href="cart.html"].btn-nav:not(.active) {
 }
 
 .product-carousel {
-    margin-top: 10px;
+        margin-top: 0; /* Supprime la fuite visuelle au-dessus de la nav */
     flex-grow: 1;
     position: relative;
     overflow: hidden;
@@ -393,6 +403,13 @@ a[href="cart.html"].btn-nav:not(.active) {
 
 .recap-footer {
     margin-top: 10px;
+}
+
+.recap-footer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .cart-page .right-pane {
@@ -520,7 +537,12 @@ a[href="cart.html"].btn-nav:not(.active) {
     }
 
     .btn-nav-cart {
-        font-size: 15px; /* Taille réduite sur Mobile */
+        font-size: 15px;
+        font-weight: 899; /* Taille réduite sur Mobile */
+    }
+
+    .lang-selector {
+        font-size: 15px;
     }
 
     .header-grid {
@@ -620,6 +642,7 @@ a[href="cart.html"].btn-nav:not(.active) {
 
 /* FLÈCHES CARROUSEL */
 .carousel-arrow {
+    display: block; /* Visible sur mobile */
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -636,6 +659,10 @@ a[href="cart.html"].btn-nav:not(.active) {
 .carousel-arrow.next { right: 0; }
 
 @media (min-width: 1101px) {
+
+     .carousel-arrow {
+        display: none; /* Masqué sur desktop */
+    }
     .about-right {
         justify-content: center;
     }

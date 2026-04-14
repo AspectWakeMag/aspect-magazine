@@ -398,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isTransitioning) return;
             isTransitioning = true;
 
-        const prevImg = images[currentImg];
+            const prevImg = images[currentImg];
             if (direction === 1) {
                 currentImg = (currentImg + 1) % images.length;
             } else {
@@ -406,22 +406,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const nextImg = images[currentImg];
 
-
-        prevImg.classList.add('exit');
-            prevImg.classList.remove('active');
-            
-            // Si on recule, on positionne l'image à gauche avant l'entrée
-            if (direction === -1) {
+            if (direction === 1) {
+                prevImg.classList.add('exit');
+                prevImg.classList.remove('active');
+                nextImg.classList.add('active');
+            } else {
+                // Retour arrière : on place l'image à gauche sans transition avant de l'animer
+                nextImg.style.transition = 'none';
                 nextImg.style.transform = 'translateX(-100%)';
+                nextImg.offsetHeight; // Force le reflow
+                
+                nextImg.style.transition = '';
+                prevImg.classList.add('exit-right');
+                prevImg.classList.remove('active');
+                nextImg.classList.add('active');
             }
-            
-            nextImg.classList.add('active');
 
-        setTimeout(() => {
+            setTimeout(() => {
                 prevImg.style.transition = 'none';
                 prevImg.classList.remove('exit');
+                prevImg.classList.remove('exit-right');
                 requestAnimationFrame(() => {
-                    nextImg.style.transform = ''; // Reset position forcée
                     requestAnimationFrame(() => prevImg.style.transition = '');
                 });
                 isTransitioning = false;

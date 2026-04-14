@@ -644,19 +644,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- INITIALISATION ---
-    // Active la section par défaut au chargement
      if (document.getElementById('landing')) {
-        initCarousel('carousel', 2000); // Uniquement sur la landing
+        // Initialise le carrousel de la landing avec l'auto-play
+        initCarousel('carousel', 2000); 
         const initialHash = window.location.hash || '#landing';
         switchSection(initialHash);
      }
 
-    initProductPage();
+    // Initialisation des pages et de l'interface
+    initProductPage(); // Gère aussi le carrousel produit en interne
     syncPrices();
     updateCartUI();
 });
-
-/**
- * Note sur la performance : requestAnimationFrame est utilisé pour le compteur 
- * afin d'assurer une fluidité maximale à 60fps.
- */

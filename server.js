@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 // L'URL du site sera définie par l'hébergeur (ex: https://ton-site.com)
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://127.0.0.1:5500';
+const FRONTEND_URL = process.env.FRONTEND_URL || 'https://aspect-magazine.vercel.app/index.html#landing';
 
 const PRODUCTS_PRICE_MAP = {
     mag3: 1500,
@@ -97,7 +97,7 @@ app.post('/create-checkout-session', async (req, res) => {
                 }
             },
         });
-console.log("SESSION URL =", session.url);
+        console.log("SESSION URL =", session.url);
 
         return res.json({ url: session.url });
 

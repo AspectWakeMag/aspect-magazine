@@ -31,7 +31,6 @@ app.post('/create-checkout-session', async (req, res) => {
 
         // Générer un numéro de commande unique
         const orderNumber = `CMD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
-
         const line_items = items
             .filter(item => item && item.id) // Sécurité : ignore les items mal formés
             .map(item => {
@@ -62,25 +61,52 @@ app.post('/create-checkout-session', async (req, res) => {
             metadata: {
                 order_number: orderNumber,
                 products: JSON.stringify(items.map(item => ({ 
-                    name: `${item.name} (${item.variant})`,
+                    name: item.name,
+                    variant: item.variant,
                     quantity: item.quantity
                 })))
             },
             
             shipping_address_collection: {
                 allowed_countries: [
-                    'FR', 'DE', 'IT', 'ES', 'BE', 'NL', 'AT', 'PT', 'IE', 
-                    'LU', 'FI', 'DK', 'SE', 'NO', 'CH', 'PL', 'CZ', 
-                    'HU', 'SK', 'SI', 'HR', 'BG', 'RO', 'EE', 'LV', 
+                    'FR', 'DE', 'IT', 'ES', 'BE', 'NL', 'AT', 'PT', 'IE',
+                    'LU', 'FI', 'DK', 'SE', 'NO', 'CH', 'PL', 'CZ',
+                    'HU', 'SK', 'SI', 'HR', 'BG', 'RO', 'EE', 'LV',
                     'LT', 'CY', 'MT', 'GR'
                 ],
             },
             
-            // Utilisation des identifiants Shipping Rates du Dashboard
-            // Stripe sélectionnera automatiquement le bon tarif selon le pays
             shipping_options: [
-                { shipping_rate: 'shr_1TM1RnHc9K6ONRvomamTK7TZ' }, // France 8€
-                { shipping_rate: 'shr_1TM1S9Hc9K6ONRvoQFhiPXHT' }  // Europe 20€
+                {
+                    shipping_rate_data: {
+                        type: 'fixed_amount',
+                        fixed_amount: {
+                            amount: 800, // 8€ pour la France
+                            currency: 'eur',
+                        },
+                        display_name: 'Livraison France',
+                        delivery_estimate: {
+                            minimum: { unit: 'business_day', value: 5 },
+                            maximum: { unit: 'business_day', value: 7 },
+                        },
+                        tax_behavior: 'exclusive',
+                    }
+                },
+                {
+                    shipping_rate_data: {
+                        type: 'fixed_amount',
+                        fixed_amount: {
+                            amount: 2000, // 20€ pour l'Europe
+                            currency: 'eur',
+                        },
+                        display_name: 'Livraison Europe',
+                        delivery_estimate: {
+                            minimum: { unit: 'business_day', value: 7 },
+                            maximum: { unit: 'business_day', value: 15 },
+                        },
+                        tax_behavior: 'exclusive',
+                    }
+                }
             ],
 
             // Création automatique de facture/reçu

@@ -31,25 +31,19 @@ app.post('/create-checkout-session', async (req, res) => {
 
         // Générer un numéro de commande unique
         const orderNumber = `CMD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
-        const line_items = items
-            .filter(item => item && item.id) // Sécurité : ignore les items mal formés
-            .map(item => {
-                const stripePriceId = PRODUCTS_PRICE_MAP[item.id];
 
-                if (!stripePriceId) {
-                    console.error(`Erreur: Pas de Price ID trouvé pour l'article "${item.id}"`);
-                    throw new Error(`Produit non reconnu ou indisponible : ${item.id}`);
-                }
+        const line_items = items.map(item => {
+            const stripePriceId = PRODUCTS_PRICE_MAP[item.id];
 
-                return {
-                    price: stripePriceId,
-                    quantity: item.quantity || 1
-                };
-            });
+            if (!stripePriceId) {
+                throw new Error(`ID de prix Stripe non configuré pour : ${item.id}`);
+            }
 
-        if (line_items.length === 0) {
-            return res.status(400).json({ error: 'Le panier est vide' });
-        }
+            return {
+                price: stripePriceId, // On utilise l'ID du Dashboard au lieu de créer le produit à la volée
+                quantity: item.quantity
+            };
+        });
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -61,17 +55,16 @@ app.post('/create-checkout-session', async (req, res) => {
             metadata: {
                 order_number: orderNumber,
                 products: JSON.stringify(items.map(item => ({ 
-                    name: item.name,
-                    variant: item.variant,
+                    name: `${item.name} (${item.variant})`,
                     quantity: item.quantity
                 })))
             },
             
             shipping_address_collection: {
                 allowed_countries: [
-                    'FR', 'DE', 'IT', 'ES', 'BE', 'NL', 'AT', 'PT', 'IE',
-                    'LU', 'FI', 'DK', 'SE', 'NO', 'CH', 'PL', 'CZ',
-                    'HU', 'SK', 'SI', 'HR', 'BG', 'RO', 'EE', 'LV',
+                    'FR', 'DE', 'IT', 'ES', 'BE', 'NL', 'AT', 'PT', 'IE', 
+                    'LU', 'FI', 'DK', 'SE', 'NO', 'CH', 'PL', 'CZ', 
+                    'HU', 'SK', 'SI', 'HR', 'BG', 'RO', 'EE', 'LV', 
                     'LT', 'CY', 'MT', 'GR'
                 ],
             },
@@ -81,30 +74,28 @@ app.post('/create-checkout-session', async (req, res) => {
                     shipping_rate_data: {
                         type: 'fixed_amount',
                         fixed_amount: {
-                            amount: 800, // 8€ pour la France
+                            amount: 800, // 8€ 
                             currency: 'eur',
                         },
-                        display_name: 'Livraison France',
+                        display_name: 'Livraison France (8€)',
                         delivery_estimate: {
-                            minimum: { unit: 'business_day', value: 5 },
-                            maximum: { unit: 'business_day', value: 7 },
-                        },
-                        tax_behavior: 'exclusive',
+                            minimum: { unit: 'business_day', value: 2 },
+                            maximum: { unit: 'business_day', value: 5 },
+                        }
                     }
                 },
                 {
                     shipping_rate_data: {
                         type: 'fixed_amount',
                         fixed_amount: {
-                            amount: 2000, // 20€ pour l'Europe
+                            amount: 2000, // 20€
                             currency: 'eur',
                         },
-                        display_name: 'Livraison Europe',
+                        display_name: 'Livraison Europe (20€)',
                         delivery_estimate: {
-                            minimum: { unit: 'business_day', value: 7 },
-                            maximum: { unit: 'business_day', value: 15 },
-                        },
-                        tax_behavior: 'exclusive',
+                            minimum: { unit: 'business_day', value: 5 },
+                            maximum: { unit: 'business_day', value: 10 },
+                        }
                     }
                 }
             ],

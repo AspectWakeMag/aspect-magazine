@@ -46,7 +46,7 @@ app.post('/create-checkout-session', async (req, res) => {
         }
 
         const session = await stripe.checkout.sessions.create({
-            payment_method_types: ['card'],
+            automatic_payment_methods: { enabled: true },
             mode: 'payment',
             line_items,
             success_url: `${FRONTEND_URL}/index.html?status=success&order_number=${orderNumber}`,

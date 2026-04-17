@@ -292,12 +292,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const renderCartPage = (cart) => {
         const container = document.querySelector('.cart-items-container');
-        const recapPrice = document.querySelector('.recap-grid .col-3.align-right');
+        const recapGrid = document.querySelector('.recap-grid');
         if (!container) return;
 
         if (cart.length === 0) {
             container.innerHTML = '<p style="padding: 20px; opacity: 0.5;">Your cart is empty.</p>';
-            if (recapPrice) recapPrice.textContent = '0,00 €';
+            if (recapGrid) recapGrid.innerHTML = '<div class="col-1">Subtotal</div><div class="col-2"></div><div class="col-3 align-right">0,00 €</div>';
             return;
         }
 
@@ -336,7 +336,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         container.innerHTML = html;
-        if (recapPrice) recapPrice.textContent = `${grandTotal.toFixed(2)} €`;
+
+        // Injection du choix de livraison dans le récapitulatif
+        if (recapGrid) {
+            const savedZone = localStorage.getItem('aspect_shipping_zone') || 'FR';
+            recapGrid.innerHTML = `
+                <div class="col-1">Subtotal</div>
+                <div class="col-2"></div>
+                <div class="col-3 align-right">${grandTotal.toFixed(2).replace('.', ',')} €</div>
+                
+                <div class="col-1" style="margin-top: 10px">Shipping in</div>
+                <div class="col-2" style="margin-top: 10px">
+                    <select id="shipping-zone" class="btn-nav" style="opacity: 1; border: 1px solid #ddd; padding: 2px; font-family: inherit;">
+                        <option value="FR" ${savedZone === 'FR' ? 'selected' : ''}>France</option>
+                        <option value="EU" ${savedZone === 'EU' ? 'selected' : ''}>Europe (excl. FR)</option>
+                    </select>
+                </div>
+                <div class="col-3 align-right" id="shipping-cost" style="margin-top: 10px">${savedZone === 'FR' ? '8,00' : '20,00'} €</div>
+            `;
+
+            const shippingSelect = document.getElementById('shipping-zone');
+            const shippingCostDisplay = document.getElementById('shipping-cost');
+            shippingSelect.onchange = () => {
+                localStorage.setItem('aspect_shipping_zone', shippingSelect.value);
+                shippingCostDisplay.textContent = shippingSelect.value === 'FR' ? '8,00 €' : '20,00 €';
+            };
+        }
 
         // Events pour Delete et Quantité
         container.querySelectorAll('.delete-item').forEach(btn => {
@@ -366,10 +391,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     const p = getProductById(item.id);
                     return { id: item.id, quantity: item.quantity, name: p.title, image: p.images[0], variant: p.lang };
                 });
+                const shippingZone = document.getElementById('shipping-zone')?.value || 'FR';
+                
                 const response = await fetch(`${API_URL}/create-checkout-session`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ items: itemsForBackend })
+                    body: JSON.stringify({ items: itemsForBackend, shippingZone })
                 });
 
                 const { url, error } = await response.json();

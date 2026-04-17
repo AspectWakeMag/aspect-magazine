@@ -23,7 +23,7 @@ const PRODUCTS_PRICE_MAP = {
 
 app.post('/create-checkout-session', async (req, res) => {
     try {
-        const { items } = req.body;
+        const { items, shippingZone } = req.body;
 
         if (!items || !Array.isArray(items)) {
             return res.status(400).json({ error: 'Invalid items' });
@@ -32,18 +32,25 @@ app.post('/create-checkout-session', async (req, res) => {
         // Générer un numéro de commande unique
         const orderNumber = `CMD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
-        const line_items = items.map(item => {
-            const stripePriceId = PRODUCTS_PRICE_MAP[item.id];
+        const line_items = items
+            .filter(item => item && item.id) // Sécurité : ignore les items mal formés
+            .map(item => {
+                const stripePriceId = PRODUCTS_PRICE_MAP[item.id];
 
-            if (!stripePriceId) {
-                throw new Error(`ID de prix Stripe non configuré pour : ${item.id}`);
-            }
+                if (!stripePriceId) {
+                    console.error(`Erreur: Pas de Price ID trouvé pour l'article "${item.id}"`);
+                    throw new Error(`Produit non reconnu ou indisponible : ${item.id}`);
+                }
 
-            return {
-                price: stripePriceId, // On utilise l'ID du Dashboard au lieu de créer le produit à la volée
-                quantity: item.quantity
-            };
-        });
+                return {
+                    price: stripePriceId,
+                    quantity: item.quantity || 1
+                };
+            });
+
+        if (line_items.length === 0) {
+            return res.status(400).json({ error: 'Le panier est vide' });
+        }
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -61,8 +68,9 @@ app.post('/create-checkout-session', async (req, res) => {
             },
             
             shipping_address_collection: {
-                allowed_countries: [
-                    'FR', 'DE', 'IT', 'ES', 'BE', 'NL', 'AT', 'PT', 'IE', 
+                // Si c'est la France, on restreint à FR, sinon on autorise le reste de l'Europe
+                allowed_countries: shippingZone === 'FR' ? ['FR'] : [
+                    'DE', 'IT', 'ES', 'BE', 'NL', 'AT', 'PT', 'IE', 
                     'LU', 'FI', 'DK', 'SE', 'NO', 'CH', 'PL', 'CZ', 
                     'HU', 'SK', 'SI', 'HR', 'BG', 'RO', 'EE', 'LV', 
                     'LT', 'CY', 'MT', 'GR'
@@ -70,34 +78,7 @@ app.post('/create-checkout-session', async (req, res) => {
             },
             
             shipping_options: [
-                {
-                    shipping_rate_data: {
-                        type: 'fixed_amount',
-                        fixed_amount: {
-                            amount: 800, // 8€ 
-                            currency: 'eur',
-                        },
-                        display_name: 'Livraison France (8€)',
-                        delivery_estimate: {
-                            minimum: { unit: 'business_day', value: 2 },
-                            maximum: { unit: 'business_day', value: 5 },
-                        }
-                    }
-                },
-                {
-                    shipping_rate_data: {
-                        type: 'fixed_amount',
-                        fixed_amount: {
-                            amount: 2000, // 20€
-                            currency: 'eur',
-                        },
-                        display_name: 'Livraison Europe (20€)',
-                        delivery_estimate: {
-                            minimum: { unit: 'business_day', value: 5 },
-                            maximum: { unit: 'business_day', value: 10 },
-                        }
-                    }
-                }
+                { shipping_rate: shippingZone === 'FR' ? 'shr_1TM1RnHc9K6ONRvomamTK7TZ' : 'shr_1TM1S9Hc9K6ONRvoQFhiPXHT' }
             ],
 
             // Création automatique de facture/reçu

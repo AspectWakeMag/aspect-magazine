@@ -24,10 +24,13 @@ const STRIPE_PRICE_MAPPING = {
 app.post('/create-checkout-session', async (req, res) => {
     try {
         const { items, shippingZone } = req.body;
+        
+        if (!items || !Array.isArray(items) || items.length === 0) {
+            throw new Error('Le panier est vide ou invalide.');
+        }
 
         const orderNumber = `CMD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
-        // ÉTAPE 2 : On transforme les items du panier en "Line Items" Stripe via les price_id
         const line_items = items.map(item => {
             const stripePriceId = STRIPE_PRICE_MAPPING[item.id];
             
@@ -41,19 +44,22 @@ app.post('/create-checkout-session', async (req, res) => {
             };
         });
 
-        if (line_items.length === 0) {
-            return res.status(400).json({ error: 'Le panier est vide' });
-        }
+        console.log(`[NODE] Création session pour ${orderNumber} (${line_items.length} articles)`);
 
         const session = await stripe.checkout.sessions.create({
             automatic_payment_methods: { enabled: true },
             mode: 'payment',
             line_items,
-            success_url: `${FRONTEND_URL}/index.html?status=success&order_number=${orderNumber}`,
+            // Utilisation de la racine / pour éviter les erreurs de chemin index.html
+            success_url: `${FRONTEND_URL}/?status=success&order_number=${orderNumber}`,
             cancel_url: `${FRONTEND_URL}/cart.html`,
 
             metadata: {
-                order_number: orderNumber
+                order_number: orderNumber,
+                products: JSON.stringify(items.map(item => ({ 
+                    name: `${item.name} (${item.variant})`,
+                    quantity: item.quantity
+                })))
             },
             
             shipping_address_collection: {
@@ -78,12 +84,12 @@ app.post('/create-checkout-session', async (req, res) => {
                 }
             },
         });
-        console.log("SESSION URL =", session.url);
 
+        console.log("SESSION URL =", session.url);
         res.json({ url: session.url });
 
     } catch (e) {
-        console.error(e);
+        console.error("[STRIPE ERROR]", e.message);
         return res.status(500).json({ error: e.message });
     }
 });

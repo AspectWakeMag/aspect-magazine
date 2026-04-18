@@ -2,15 +2,55 @@ const express = require('express');
 // Utilisation d'une variable d'environnement pour la clé secrète
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const cors = require('cors');
-
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 const app = express();
-app.use(express.json());
-app.use(cors());
 
 // L'URL du site sera définie par l'hébergeur (ex: https://ton-site.com)
 // IMPORTANT : On garde uniquement la racine pour éviter les erreurs de redirection
 const FRONTEND_URL = process.env.FRONTEND_URL || 'https://aspect-magazine.vercel.app';
+
+app.use(cors({
+    origin: FRONTEND_URL
+}));
+
+// ROUTE WEBHOOK : Doit être placée AVANT app.use(express.json())
+// car Stripe a besoin du corps brut (raw) pour la vérification de signature.
+app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
+    const sig = request.headers['stripe-signature'];
+
+    let event;
+
+    try {
+        event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+    } catch (err) {
+        console.error(`[WEBHOOK ERROR] Signature verification failed: ${err.message}`);
+        return response.status(400).send(`Webhook Error: ${err.message}`);
+    }
+
+    // Gestion de l'événement de paiement réussi
+    if (event.type === 'checkout.session.completed') {
+        const session = event.data.object;
+
+        // Récupération des données importantes
+        const orderNumber = session.metadata.order_number;
+        const customerEmail = session.customer_details.email;
+        const products = JSON.parse(session.metadata.products);
+
+        console.log(`STREAMS_OK: Commande ${orderNumber} payée par ${customerEmail}`);
+        console.log(`ARTICLES:`, products);
+        
+        // ICI : Tu peux ajouter ta logique (envoyer un email, décrémenter le stock, etc.)
+        // fulfillOrder(session); 
+    }
+
+    // Envoyer une réponse 200 à Stripe pour confirmer la réception
+    response.send();
+});
+
+// Middleware pour les autres routes
+app.use(express.json());
+
 
 // ÉTAPE 1 : Le "Mapping" (Le lien entre ton site et le catalogue Stripe)
 const STRIPE_PRICE_MAPPING = {

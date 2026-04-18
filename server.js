@@ -16,7 +16,7 @@ app.use(cors({
 
 // ROUTE WEBHOOK : Doit être placée AVANT app.use(express.json())
 // car Stripe a besoin du corps brut (raw) pour la vérification de signature.
-app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
+app.post('/webhook', express.raw({type: '*/*'}), (request, response) => {
     const sig = request.headers['stripe-signature'];
 
     let event;

@@ -47,7 +47,6 @@ app.post('/create-checkout-session', async (req, res) => {
         console.log(`[NODE] Création session pour ${orderNumber} (${line_items.length} articles)`);
 
         const session = await stripe.checkout.sessions.create({
-            automatic_payment_methods: { enabled: true },
             mode: 'payment',
             line_items,
             // Utilisation de la racine / pour éviter les erreurs de chemin index.html

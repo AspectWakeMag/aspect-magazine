@@ -17,11 +17,11 @@ html {
 
 body {
     font-family: 'Aspekta', sans-serif;
-    color: #ffffff;
+    color: #000;
     font-size: 12pt;
     line-height: 1.1; /* Augmentation légère pour laisser respirer les jambages des lettres */
     font-weight: 750;
-    background-color: #000000;
+    background-color: #fff;
     text-decoration: none;
     overflow: hidden; /* Verrouille le scroll global entre les pages */
 }
@@ -688,27 +688,4 @@ a[href="cart.html"].btn-nav:not(.active) {
     .about-right .about-content {
         margin: 0;
     }
-}
-
-/* INTRO GIF OVERLAY */
-.intro-overlay {
-    position: fixed;
-    inset: 0;
-    background: #fff; /* Fond blanc pendant le GIF */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 20000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-.intro-overlay.visible {
-    opacity: 1;
-    visibility: visible;
-}
-.intro-overlay img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
 }

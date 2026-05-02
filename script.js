@@ -670,31 +670,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- LOGIQUE INTRO GIF ---
-    const playIntroGif = () => {
-        const overlay = document.getElementById('intro-overlay');
-        const gif = document.getElementById('intro-gif');
-        if (!overlay || !gif) return;
-
-        // Force le redémarrage du GIF en changeant la source
-        const gifSrc = "images/gif-new.gif";
-        gif.src = gifSrc + "?t=" + new Date().getTime();
-
-        overlay.classList.add('visible');
-
-        // AJUSTEMENT : Change 3000 par la durée réelle de ton GIF en millisecondes
-        const duration = 3000; 
-
-        setTimeout(() => {
-            overlay.classList.remove('visible');
-        }, duration);
-    };
-
-    // Lancement au chargement de la page
-    if (document.body.classList.contains('cart-page') === false && document.body.classList.contains('product-page') === false) {
-        playIntroGif();
-    }
-
     // --- INITIALISATION ---
      if (document.getElementById('landing')) {
         // Initialise le carrousel de la landing avec l'auto-play
@@ -707,11 +682,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initProductPage(); // Gère aussi le carrousel produit en interne
     syncPrices();
     updateCartUI();
-
-    // Listener global pour relancer le GIF sur le bouton "Aspect Numero 3"
-    document.addEventListener('click', (e) => {
-        if (e.target.textContent.includes('Aspect Numero 3')) {
-            playIntroGif();
-        }
-    });
 });

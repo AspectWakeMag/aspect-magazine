@@ -17,11 +17,11 @@ html {
 
 body {
     font-family: 'Aspekta', sans-serif;
-    color: #000;
+    color: #ffffff;
     font-size: 12pt;
     line-height: 1.1; /* Augmentation légère pour laisser respirer les jambages des lettres */
     font-weight: 750;
-    background-color: #fff;
+    background-color: #000000;
     text-decoration: none;
     overflow: hidden; /* Verrouille le scroll global entre les pages */
 }

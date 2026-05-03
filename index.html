@@ -8,7 +8,23 @@
     <link rel="icon" type="image/jpeg" href="images/icon-vague.jpg">
 </head>
 <body>
-    <main class="main-container active" id="landing">
+    <header class="main-header">
+        <div class="header-grid">
+            <div class="col-1">
+                <a href="#landing" class="btn-nav active">Aspect Numero 3</a>
+            </div>
+            <div class="col-2 align-right">
+                <a href="cart.html" class="btn-nav">Cart (0)</a>
+                <a href="#shop" class="btn-nav">Shop</a>
+            </div>
+            <div class="col-3 align-right">
+                <a href="#about" class="btn-nav">About</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION LANDING (BLACK) -->
+    <main class="main-container landing-section" id="landing">
         <!-- PARTIE GAUCHE : CARROUSEL -->
         <section class="left-pane">
             <div class="carousel" id="carousel">
@@ -20,33 +36,21 @@
                 
             </div>
             <div id="cursor-follower">See More</div>
+            
+            <!-- Détails déplacés ici pour le mobile -->
+            <div id="aspect-details" class="aspect-info-block">
+                <p>Cover by Detty Marie</p>
+                <div class="details-row">
+                    <span id="page-counter">0</span> Pages
+                    <a href="product.html?id=mag3-fr" class="btn-nav">View in shop</a>
+                </div>
+            </div>
         </section>
 
         <!-- PARTIE DROITE : CONTENU -->
         <section class="right-pane">
-            <header class="header-grid">
-                <div class="col-1">
-                    <button id="toggle-aspect" class="btn-nav active">Aspect Numero 3</button>
-                    <div id="aspect-details" class="details-hidden open">
-                        <p>Cover by Detty Marie</p>
-                        <div class="details-row">
-                            <span id="page-counter">0</span> Pages
-                            <a href="product.html?id=mag3-fr" class="btn-nav">View in shop</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-2 align-right">
-                    <a href="cart.html" class="btn-nav">Cart (0)</a>
-                    <a href="#shop" class="btn-nav">Shop</a>
-                </div>
-                <div class="col-3 align-right">
-                    <a href="#about" class="btn-nav">About</a>
-                </div>
-            </header>
-
             <div class="summary-container">
                 <div class="summary-grid" id="summary-list">
-                    <!-- Les items seront injectés ou animés ici -->
                     <div class="summary-row"><span>Roatrdip</span><span>ROAD to LAO</span></div>
                     <div class="summary-row"><span>Contest</span><span>LAO</span></div>
                     <div class="summary-row"><span>Interview</span><span>Tino</span></div>
@@ -71,11 +75,10 @@
         </section>
     </main>
 
-    <!-- SECTION SHOP AJOUTÉE EN DESSOUS -->
+    <!-- SECTION SHOP (WHITE) -->
     <main class="main-container shop-page" id="shop">
-        <!-- PARTIE GAUCHE : PRODUITS (Scrollable) -->
-        <section class="left-pane scrollable-pane">
-            <div class="product-grid">
+        <section class="shop-content">
+            <div class="product-row" id="product-row">
                 <!-- Produit 1 -->
                 <a href="product.html?id=mag3-fr" class="product-item" style="color: inherit; text-decoration: none;">
                     <img src="images/MAG 3 RECTO.jpg" alt="Magazine 3" class="product-image">
@@ -109,44 +112,19 @@
                     </div>
                 </a>
             </div>
-        </section>
-
-        <!-- PARTIE DROITE : HEADER SHOP -->
-        <section class="right-pane">
-            <header class="header-grid">
-                <div class="col-1">
-                    <a href="#landing" class="btn-nav">Aspect Numero 3</a>
-                </div>
-                <div class="col-2 align-right">
-                    <a href="cart.html" class="btn-nav">Cart (0)</a>
-                    <a href="#shop" class="btn-nav active">Shop</a>
-                </div>
-                <div class="col-3 align-right">
-                    <a href="#about" class="btn-nav">About</a>
-                </div>
-            </header>
+            <div class="shop-nav-arrows">
+                <button class="shop-arrow" id="shop-prev">←</button>
+                <button class="shop-arrow" id="shop-next">→</button>
+            </div>
         </section>
     </main>
 
-    <!-- SECTION ABOUT -->
-    <main class="main-container about-page" id="about">
+    <!-- SECTION ABOUT (BLACK) -->
+    <main class="main-container about-section" id="about">
         <section class="left-pane about-left">
             <p class="animate-text">We explore wakeboarding culture in all its dimensions. Every detail matters; every movement is observed with precision. Our aim is to reveal the beauty within and offer you the most authentic reflection of this culture.</p>
         </section>
-
         <section class="right-pane about-right">
-            <header class="header-grid">
-                <div class="col-1">
-                    <a href="#landing" class="btn-nav">Aspect Numero 3</a>
-                </div>
-                <div class="col-2 align-right">
-                    <a href="cart.html" class="btn-nav">Cart (0)</a>
-                    <a href="#shop" class="btn-nav">Shop</a>
-                </div>
-                <div class="col-3 align-right">
-                    <a href="#about" class="btn-nav active">About</a>
-                </div>
-            </header>
             <div class="about-content">
                 <p>
                     <span class="animate-text">We are an independent magazine, driven by passion. Your support is our greatest reward—don’t hesitate to collaborate with us.</span>

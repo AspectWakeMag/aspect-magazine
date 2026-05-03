@@ -624,35 +624,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
     }
 
-    // --- GESTION SHOP HORIZONTAL (Desktop) ---
-    const shopRow = document.getElementById('product-row');
-    const btnNext = document.getElementById('shop-next');
-    const btnPrev = document.getElementById('shop-prev');
-
-    if (shopRow && btnNext && btnPrev) {
-        btnNext.onclick = () => shopRow.scrollBy({ left: 320, behavior: 'smooth' });
-        btnPrev.onclick = () => shopRow.scrollBy({ left: -320, behavior: 'smooth' });
-    }
-
     // --- NAVIGATION VERROUILLÉE ---
     // Remplace le scroll par un système de switch de section (SPA)
     const navLinks = document.querySelectorAll('a[href^="#"]');
     
-    
+    function switchSection(targetId) {
+        const sections = document.querySelectorAll('.main-container');
+        sections.forEach(s => s.classList.remove('active'));
+        
+        const target = document.querySelector(targetId);
+        if (target) {
+            target.classList.add('active');
+            // Réinitialise le scroll du panneau de droite au changement
+            const rightPane = target.querySelector('.right-pane');
+            if (rightPane) rightPane.scrollTop = 0;
+        }
+    }
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             const targetId = link.getAttribute('href');
             if (targetId.startsWith('#')) {
                 e.preventDefault();
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                    
-                    // Update active state in nav
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    link.classList.add('active');
-                }
+                history.pushState(null, null, targetId);
+                switchSection(targetId);
             }
         });
     });
@@ -678,7 +673,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- INITIALISATION ---
      if (document.getElementById('landing')) {
         // Initialise le carrousel de la landing avec l'auto-play
-        initCarousel('carousel', 3000); 
+        initCarousel('carousel', 2000); 
+        const initialHash = window.location.hash || '#landing';
+        switchSection(initialHash);
      }
 
     // Initialisation des pages et de l'interface

@@ -336,14 +336,19 @@ a[href="cart.html"].btn-nav:not(.active) {
 }
 
 .product-nav {
-    margin-top: 10px;    /* Aligné avec le header */
-    margin-bottom: 10px; /* Espace avant le carrousel */
-    padding-left: 10px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 150;
+    mix-blend-mode: difference;
+    color: #fff; /* Requis pour que le mode difference fonctionne sur les couleurs sombres */
+}
+.product-nav .btn-nav {
+    opacity: 1;
 }
 
 .product-carousel {
-        margin-top: 0; /* Supprime la fuite visuelle au-dessus de la nav */
-    flex-grow: 1;
+    height: 100%;
     position: relative;
     overflow: hidden;
 }
@@ -561,6 +566,8 @@ a[href="cart.html"].btn-nav:not(.active) {
         left: 10px;
         z-index: 100;
         padding: 0 !important;
+        mix-blend-mode: difference;
+        color: #fff;
     }
 
     /* GESTION COMMUNE DES PANNEAUX */
@@ -613,10 +620,6 @@ a[href="cart.html"].btn-nav:not(.active) {
     }
 
     /* PRODUCT PAGE MOBILE */
-    .product-page .product-nav {
-        display: none; /* Suppression du bouton back to shop sur mobile */
-    }
-
     .product-page .product-left {
         height: 50dvh;
         position: relative;

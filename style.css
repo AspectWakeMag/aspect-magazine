@@ -5,13 +5,6 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'Richmond-Text';
-    src: url('./fonts/richmond-text.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -63,7 +56,7 @@ body {
         top: 0;
         bottom: 0;
         left: 50%;
-        width: 1px;
+        width: 2px;
     }
 }
 
@@ -74,20 +67,6 @@ body {
         right: 0;
         height: 1px;
     }
-}
-
-/* RICHMOND TEXT TYPOGRAPHY */
-.product-info p,
-#p-title,
-#p-price,
-.item-info span,
-.item-price,
-.item-subtotal,
-#shipping-cost,
-.recap-grid .col-3 {
-    font-family: 'Richmond-Text', serif !important;
-    font-weight: normal;
-    text-transform: none;
 }
 
 /* GAUCHE : CARROUSEL */

@@ -5,6 +5,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Richmond-Text';
+    src: url('./fonts/richmond-text.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -43,6 +50,45 @@ body {
     display: flex;
 }
 
+/* SEPARATION LINE (FILET NOIR) */
+.separator {
+    position: fixed;
+    background-color: #000;
+    z-index: 5000; /* Sous les overlays mais au dessus du contenu */
+    pointer-events: none;
+}
+
+@media (min-width: 1101px) {
+    .separator {
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 1px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .separator {
+        top: 50dvh;
+        left: 0;
+        right: 0;
+        height: 1px;
+    }
+}
+
+/* RICHMOND TEXT TYPOGRAPHY */
+.product-info p,
+#p-title,
+#p-price,
+.item-info span,
+.item-price,
+.item-subtotal,
+#shipping-cost,
+.recap-grid .col-3 {
+    font-family: 'Richmond-Text', serif !important;
+    font-weight: normal;
+    text-transform: none;
+}
 
 /* GAUCHE : CARROUSEL */
 .left-pane {

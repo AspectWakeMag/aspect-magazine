@@ -506,48 +506,58 @@ document.addEventListener('DOMContentLoaded', () => {
             const spans = row.querySelectorAll('span');
             spans.forEach(span => splitToChars(span));
         });
-
-        const summaryObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const allChars = summaryList.querySelectorAll('.char');
-                    allChars.forEach((char, index) => {
-                        setTimeout(() => {
-                            char.style.opacity = '1';
-                        }, index * 9); // Vitesse adaptée pour un défilement fluide du bloc entier
-                    });
-
-                    if (!window.counterStarted) {
-                        window.counterStarted = true;
-                        animateCounter(performance.now());
-                    }
-                    summaryObserver.unobserve(summaryList);
-                }
-            });
-        }, { threshold: 0.1 });
-        summaryObserver.observe(summaryList);
     }
 
     // 2. Textes animés (About section & blocs .animate-text)
     const animateTexts = document.querySelectorAll('.animate-text');
-    animateTexts.forEach(container => {
-        splitToChars(container);
-        
-        const textObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const chars = container.querySelectorAll('.char');
-                    chars.forEach((char, index) => {
-                        setTimeout(() => {
-                            char.style.opacity = '1';
-                        }, index * 15);
-                    });
-                    textObserver.unobserve(container);
-                }
-            });
-        }, { threshold: 0.1 });
-        textObserver.observe(container);
-    });
+    animateTexts.forEach(container => splitToChars(container));
+
+    // --- GESTION DU LOADER ET DÉCLENCHEMENT DIFFÉRÉ DES ANIMATIONS ---
+    setTimeout(() => {
+        const loader = document.getElementById('page-loader');
+        if (loader) loader.classList.add('hidden');
+
+        // Lancement de l'observation du sommaire après le GIF
+        if (summaryList) {
+            const summaryObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const allChars = summaryList.querySelectorAll('.char');
+                        allChars.forEach((char, index) => {
+                            setTimeout(() => {
+                                char.style.opacity = '1';
+                            }, index * 9);
+                        });
+
+                        if (!window.counterStarted) {
+                            window.counterStarted = true;
+                            animateCounter(performance.now());
+                        }
+                        summaryObserver.unobserve(summaryList);
+                    }
+                });
+            }, { threshold: 0.1 });
+            summaryObserver.observe(summaryList);
+        }
+
+        // Lancement de l'observation des textes About après le GIF
+        animateTexts.forEach(container => {
+            const textObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const chars = container.querySelectorAll('.char');
+                        chars.forEach((char, index) => {
+                            setTimeout(() => {
+                                char.style.opacity = '1';
+                            }, index * 15);
+                        });
+                        textObserver.unobserve(container);
+                    }
+                });
+            }, { threshold: 0.1 });
+            textObserver.observe(container);
+        });
+    }, 3000); // 3 secondes d'attente pour le GIF
 
     function splitToChars(element) {
         const text = element.textContent.trim();

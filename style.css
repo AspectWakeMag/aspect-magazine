@@ -26,6 +26,23 @@ body {
     overflow: hidden; /* Verrouille le scroll global entre les pages */
 }
 
+/* INTRO LOADER */
+#page-loader {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20000; /* Toujours au dessus de tout */
+    transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+#page-loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
 .main-container {
     display: none; /* Cache les sections par défaut */
     height: 100dvh; /* Utilise la hauteur dynamique pour éviter les décalages sur mobile */

@@ -512,12 +512,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const animateTexts = document.querySelectorAll('.animate-text');
     animateTexts.forEach(container => splitToChars(container));
 
-    // --- GESTION DU LOADER ET DÉCLENCHEMENT DIFFÉRÉ DES ANIMATIONS ---
-    setTimeout(() => {
-        const loader = document.getElementById('page-loader');
-        if (loader) loader.classList.add('hidden');
-
-        // Lancement de l'observation du sommaire après le GIF
+    const initAnimationObservers = () => {
+        // Lancement de l'observation du sommaire
         if (summaryList) {
             const summaryObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -540,7 +536,7 @@ document.addEventListener('DOMContentLoaded', () => {
             summaryObserver.observe(summaryList);
         }
 
-        // Lancement de l'observation des textes About après le GIF
+        // Lancement de l'observation des textes About
         animateTexts.forEach(container => {
             const textObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -557,7 +553,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }, { threshold: 0.1 });
             textObserver.observe(container);
         });
-    }, 3000); // 3 secondes d'attente pour le GIF
+    };
+
+    // --- GESTION DU LOADER (UNE SEULE FOIS PAR SESSION) ---
+    const loader = document.getElementById('page-loader');
+    const hasShownLoader = sessionStorage.getItem('aspect_loader_shown');
+
+    if (hasShownLoader) {
+        if (loader) loader.style.display = 'none';
+        initAnimationObservers();
+    } else {
+        sessionStorage.setItem('aspect_loader_shown', 'true');
+        setTimeout(() => {
+            if (loader) loader.classList.add('hidden');
+            initAnimationObservers();
+        }, 3000);
+    }
 
     function splitToChars(element) {
         const text = element.textContent.trim();

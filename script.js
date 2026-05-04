@@ -560,12 +560,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const hasShownLoader = sessionStorage.getItem('aspect_loader_shown');
 
     if (hasShownLoader) {
-        if (loader) loader.style.display = 'none';
+        if (loader) {
+            loader.style.display = 'none';
+            loader.classList.add('hidden');
+        }
         initAnimationObservers();
     } else {
-        sessionStorage.setItem('aspect_loader_shown', 'true');
         setTimeout(() => {
             if (loader) loader.classList.add('hidden');
+            sessionStorage.setItem('aspect_loader_shown', 'true');
             initAnimationObservers();
         }, 3000);
     }

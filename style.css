@@ -39,7 +39,7 @@ body {
 }
 
 #page-loader img {
-    width: 150px; /* Taille réduite du GIF */
+    width: 120px; /* Encore plus petit pour la discrétion */
     height: auto;
 }
 

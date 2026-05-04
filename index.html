@@ -12,6 +12,12 @@
     <div id="page-loader">
         <img src="images/gif-new.gif" alt="Aspect Magazine Loading...">
     </div>
+    <script>
+        // Masquage immédiat si déjà vu dans la session pour éviter le flash
+        if (sessionStorage.getItem('aspect_loader_shown')) {
+            document.getElementById('page-loader').style.display = 'none';
+        }
+    </script>
 
     <main class="main-container active" id="landing">
         <!-- PARTIE GAUCHE : CARROUSEL -->

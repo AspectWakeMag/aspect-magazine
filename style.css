@@ -43,32 +43,6 @@ body {
     display: flex;
 }
 
-/* SEPARATION LINE (FILET NOIR) */
-.separator {
-    position: fixed;
-    background-color: #000;
-    z-index: 5000; /* Sous les overlays mais au dessus du contenu */
-    pointer-events: none;
-}
-
-@media (min-width: 1101px) {
-    .separator {
-        top: 0;
-        bottom: 0;
-        left: calc(50% - 2px); /* Placé sur le bord de la partie blanche pour rester visible */
-        width: 2px;
-    }
-}
-
-@media (max-width: 1100px) {
-    .separator {
-        top: calc(50dvh - 1px); /* Placé juste au dessus de la partie noire */
-        left: 0;
-        right: 0;
-        height: 1px;
-    }
-}
-
 /* GAUCHE : CARROUSEL */
 .left-pane {
     flex: 0 0 50%;

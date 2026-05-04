@@ -310,7 +310,6 @@ document.addEventListener('DOMContentLoaded', () => {
             grandTotal += subtotal;
             html += `
                 <div class="cart-item">
-                    <hr class="cart-line">
                     <div class="item-grid">
                         <img src="${product.images[0]}" class="item-img" alt="${product.title}">
                         <div class="item-top">

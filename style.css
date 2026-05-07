@@ -520,7 +520,7 @@ a[href="cart.html"].btn-nav:not(.active) {
 .order-modal .modal-center {
     font-size: 50px; /* Doublé pour correspondre à la nouvelle taille du pop-up */
     line-height: 42px;
-    font-weight: 850;
+    font-weight: 700;
     flex-grow: 1;
     display: flex;
     align-items: center;
@@ -584,7 +584,7 @@ a[href="cart.html"].btn-nav:not(.active) {
         color: #fff;
         padding: 0 10px 10px 10px; /* Suppression du padding top pour coller au carrousel */
         z-index: 2;
-        box-shadow: 0 -5px 15px rgba(255,255,255,0.6);
+        box-shadow: 0 -2px 10px rgba(255,255,255,0.4); /* Lueur très fine de ~10-20px */
         overflow-y: auto; /* Permet de scroller le contenu interne (sommaire, etc.) */
         gap: 20px; /* Réduction de l'espace global (était à 40px) */
     }

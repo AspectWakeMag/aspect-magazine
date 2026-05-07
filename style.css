@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Aspekta';
     src: url('./fonts/AspektaVF.ttf') format('truetype');
-    font-weight: 750;
+    font-weight: 700;
     font-style: normal;
 }
 
@@ -20,7 +20,7 @@ body {
     color: #000;
     font-size: 12pt;
     line-height: 1.1; /* Augmentation légère pour laisser respirer les jambages des lettres */
-    font-weight: 750;
+    font-weight: 700;
     background-color: #fff;
     text-decoration: none;
     overflow: hidden; /* Verrouille le scroll global entre les pages */
@@ -120,7 +120,7 @@ a.btn-nav {
     pointer-events: none;
     color: #ffffff;
     font-size: 10pt;
-    font-weight: 750;
+    font-weight: 700;
     z-index: 1000;
     transform: translate(-50%, -50%);
     white-space: nowrap;
@@ -210,7 +210,7 @@ a[href="cart.html"].btn-nav:not(.active) {
     border: none;
     font-family: inherit;
     font-size: inherit; /* Hérite de la taille du body (12pt desktop / 9pt mobile) */
-    font-weight: inherit;
+    font-weight: 700;
     color: inherit;
     cursor: pointer;
     opacity: 0.2;
@@ -223,7 +223,7 @@ a[href="cart.html"].btn-nav:not(.active) {
     border: none;
     font-family: inherit;
     font-size: inherit; /* Taille par défaut du body */
-    font-weight: 750;
+    font-weight: 700;
     color: inherit;
     cursor: pointer;
     opacity: 1;
@@ -236,7 +236,7 @@ a[href="cart.html"].btn-nav:not(.active) {
 #lang-selector,
 .btn-checkout {
     font-size: 15pt !important;
-    font-weight: 750;
+    font-weight: 700;
 }
 
 #lang-selector .btn-nav {
@@ -584,13 +584,13 @@ a[href="cart.html"].btn-nav:not(.active) {
         color: #fff;
         padding: 0 10px 10px 10px; /* Suppression du padding top pour coller au carrousel */
         z-index: 2;
-        box-shadow: 0 -10px 30px rgba(255,255,255,0.8);
+        box-shadow: 0 -5px 15px rgba(255,255,255,0.6);
         overflow-y: auto; /* Permet de scroller le contenu interne (sommaire, etc.) */
         gap: 20px; /* Réduction de l'espace global (était à 40px) */
     }
 
     .btn-nav-cart {
-        font-weight: 750;
+        font-weight: 700;
     }
 
     .btn-nav-cart,

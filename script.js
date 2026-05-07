@@ -379,6 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             checkoutBtn.disabled = true;
             checkoutBtn.textContent = 'Processing...Initial loading may take a few seconds.';
+            checkoutBtn.style.opacity = '0.5';
 
             // Détection automatique de l'URL du backend
             const API_URL = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 
@@ -406,6 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert("An error occurred during checkout. Please try again.");
                 checkoutBtn.disabled = false;
                 checkoutBtn.textContent = 'Continue to shipping infos →';
+                checkoutBtn.style.opacity = '1';
             }
         });
     }
@@ -513,12 +515,14 @@ document.addEventListener('DOMContentLoaded', () => {
     animateTexts.forEach(container => splitToChars(container));
 
     const initAnimationObservers = () => {
-        // Lancement de l'observation du sommaire
-        if (summaryList) {
+        // Lancement de l'observation des sommaires (Landing et Shop)
+        const allSummaries = document.querySelectorAll('.summary-grid');
+        
+        allSummaries.forEach(grid => {
             const summaryObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        const allChars = summaryList.querySelectorAll('.char');
+                        const allChars = grid.querySelectorAll('.char');
                         allChars.forEach((char, index) => {
                             setTimeout(() => {
                                 char.style.opacity = '1';
@@ -529,12 +533,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             window.counterStarted = true;
                             animateCounter(performance.now());
                         }
-                        summaryObserver.unobserve(summaryList);
+                        summaryObserver.unobserve(grid);
                     }
                 });
             }, { threshold: 0.1 });
-            summaryObserver.observe(summaryList);
-        }
+            summaryObserver.observe(grid);
+        });
 
         // Lancement de l'observation des textes About
         animateTexts.forEach(container => {
@@ -574,11 +578,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function splitToChars(element) {
-        const text = element.textContent.trim();
+        const text = element.textContent;
         element.textContent = '';
-        const words = text.split(/\s+/);
+        // On garde les espaces mais on filtre les chaines vides
+        const words = text.split(/(\s+)/).filter(w => w !== '');
 
         for (let i = 0; i < words.length; i++) {
+            if (words[i].trim() === '') {
+                element.appendChild(document.createTextNode(words[i]));
+                continue;
+            }
+
             const wordWrapper = document.createElement('span');
             wordWrapper.classList.add('word-wrap');
 
@@ -606,11 +616,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             element.appendChild(wordWrapper);
-
-            if (i < words.length - 1) {
-                const space = document.createTextNode(' ');
-                element.appendChild(space);
-            }
         }
     }
 

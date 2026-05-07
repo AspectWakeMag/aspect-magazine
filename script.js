@@ -378,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (cart.length === 0) return;
 
             checkoutBtn.disabled = true;
-            checkoutBtn.textContent = 'Processing...';
+            checkoutBtn.textContent = 'Processing...Initial loading may take a few seconds.';
 
             // Détection automatique de l'URL du backend
             const API_URL = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 

@@ -223,7 +223,7 @@ a[href="cart.html"].btn-nav:not(.active) {
     border: none;
     font-family: inherit;
     font-size: inherit; /* Taille par défaut du body */
-    font-weight: 899;
+    font-weight: 750;
     color: inherit;
     cursor: pointer;
     opacity: 1;
@@ -236,7 +236,7 @@ a[href="cart.html"].btn-nav:not(.active) {
 #lang-selector,
 .btn-checkout {
     font-size: 15pt !important;
-    font-weight: 899;
+    font-weight: 750;
 }
 
 #lang-selector .btn-nav {
@@ -590,7 +590,7 @@ a[href="cart.html"].btn-nav:not(.active) {
     }
 
     .btn-nav-cart {
-        font-weight: 899;
+        font-weight: 750;
     }
 
     .btn-nav-cart,

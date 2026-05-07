@@ -17,28 +17,28 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 'mag3-fr', baseId: 'mag3', lang: 'FR', title: "Aspect Magazine Numero 3", subtitle: "Cover by Detty Marie", price: 15.00,
             desc: "Find exclusive interviews with the world’s top riders, articles about the industry, and tips to improve your performance — a magazine by enthusiasts, for enthusiasts.",
             specs: "130 pages, 200 mm x 270 mm, printed in France.",
-            images: ["images/MAG 3 RECTOFULL.webp", "MAG 3 VERSOFULL.webp", "MAG 3 LIFESTYLEFULL.webp"],
+            images: ["images/MAG 3 RECTOFULL.webp", "images/MAG 3 VERSOFULL.webp", "images/MAG 3 LIFESTYLEFULL.webp"],
             summary: [["Roatrdip", "ROAD to LAO"], ["Contest", "LAO"], ["Interview", "Tino"], ["Art", "Soline Bourdon"], ["Young Guns", "Eva rivière"], ["Interlude", "Gottes Kinder"], ["Industrie", "Cabana Wakeskate"], ["Portrait", "Maxime Roux"], ["Video Club", "Spicy Tv"], ["Interview", "Enzo Asseraf"], ["Portrait", "Hervé Puyol"], ["Impact", "Prépa mentale, visualisation"], ["Carte blanche", "Max Evans"], ["Récit", "Jules Charraud, Winter Holidays"], ["Video", "Singularity project"], ["Portfolio", "Sam Strauss"], ["Video", "Vivid"], ["La playlist d'un rider", "Bobby Carne"], ["Playground", "Casse tête - Mots fléchés"]]
         },
         {
             id: 'mag3-en', baseId: 'mag3', lang: 'EN', title: "Aspect Magazine Numero 3", subtitle: "Cover by Detty Marie", price: 15.00,
             desc: "Find exclusive interviews with the world’s top riders, articles about the industry, and tips to improve your performance — a magazine by enthusiasts, for enthusiasts.",
             specs: "130 pages, 200 mm x 270 mm, printed in France.",
-            images: ["images/MAG 3 RECTOFULL.webp", "MAG 3 VERSOFULL.webp", "MAG 3 LIFESTYLEFULL.webp"],
+            images: ["images/MAG 3 RECTOFULL.webp", "images/MAG 3 VERSOFULL.webp", "images/MAG 3 LIFESTYLEFULL.webp"],
             summary: [["Roatrdip", "ROAD to LAO"], ["Contest", "LAO"], ["Interview", "Tino"], ["Art", "Soline Bourdon"], ["Young Guns", "Eva rivière"], ["Interlude", "Gottes Kinder"], ["Industrie", "Cabana Wakeskate"], ["Portrait", "Maxime Roux"], ["Video Club", "Spicy Tv"], ["Interview", "Enzo Asseraf"], ["Portrait", "Hervé Puyol"], ["Impact", "Prépa mentale, visualisation"], ["Carte blanche", "Max Evans"], ["Récit", "Jules Charraud, Winter Holidays"], ["Video", "Singularity project"], ["Portfolio", "Sam Strauss"], ["Video", "Vivid"], ["La playlist d'un rider", "Bobby Carne"], ["Playground", "Casse tête - Mots fléchés"]]
         },
         {
             id: 'mag2-fr', baseId: 'mag2', lang: 'FR', title: "Aspect Magazine Numero 2", subtitle: "Cover By Alexis Nilias", price: 10.00,
             desc: "Find exclusive interviews with the world’s top riders, articles about the industry, and tips to improve your performance.",
             specs: "150 pages, 200 mm x 270 mm, printed in France, magazine in French.",
-            images: ["images/MAG 2 RECTOFULL.webp", "MAG 2 VERSOFULL.webp", "MAG 2 LIFESTYLE.gif"],
+            images: ["images/MAG 2 RECTOFULL.webp", "images/MAG 2 VERSOFULL.webp", "images/MAG 2 LIFESTYLE.gif"],
             summary: [["Photo report", "Ys6"], ["Backside - frontside", "Trent & Gavin Stuckey"], ["Interview", "Ile Vegni"], ["Opinion", "Les bases sacrées de la Force"], ["Interview", "Hexa : un crew et une Jam nouvelle générartion"], ["Portfolio", "Steffen Vollert, tour après tour"], ["Contest report", "Red Bull Wake the City"], ["Art", "Nane et les 15 ans de la Peak"], ["Legends", "Shred Town : à l'origine d'une révolution"], ["Impact", "Bien préparer sa saison"], ["Portrait", "Dom Hernler"], ["Opinion", "Une vidéo pas comme les autres"], ["Portrait", "Maxime Cadoux"], ["Framed", "Dans les coulisses du Sitwake"], ["Interview", "Loic Deschaux & Robin Carayol"], ["Portrait", "Maryh Rougier"], ["Diy", "Le guide du parfait Wakepants"], ["Photo", "Sewer cats"]]
         },
         {
             id: 'mag1-fr', baseId: 'mag1', lang: 'FR', title: "Aspect Magazine Numero 1", subtitle: "Cover By Sam Strauss", price: 10.00,
             desc: "Find exclusive interviews with the world’s top riders, articles about the industry, and tips to improve your performance.",
             specs: "136 pages, 200 mm x 270 mm, printed in France, magazine in French.",
-            images: ["images/MAG 1 RECTOFULL.webp", "MAG 1 VERSOFULL.webp", "MAG 1 LIFESTYLEFULL.webp"],
+            images: ["images/MAG 1 RECTOFULL.webp", "images/MAG 1 VERSOFULL.webp", "images/MAG 1 LIFESTYLEFULL.webp"],
             stockLimit: 6,
             summary: [["Interview", "Tao, Innovation continue"], ["Chronique", "Les Copains d’abords"], ["Report", "Wakeskate Cup"], ["Backside/Frontside", "Les Sœurs Rougerie"], ["Trip", "Un paradis…ca se mérite"], ["Échanges", "Contest, (R)evolution"], ["Interview", "Copycatsclub"], ["Report", "Wakeboard Street Jam"], ["Matos 2024", "Suivez le guide"], ["Framed", "Mathilde Revil"], ["Impact", "Ôde a la blessure"], ["Trip", "Yardsale 5"], ["Young Blood", "Esteban Diruy"], ["Art", "Kathleen Neeley"], ["Portfolio", "Bryan Soderlind"], ["Diy", "Répare ta planche !"]]
         },
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 'totebag', baseId: 'totebag', lang: 'Unique', title: "Aspect Tote Bag", subtitle: "100% Cotton", price: 15.00,
             desc: "High quality 100% cotton tote bag, perfect for your daily gear.",
             specs: "100% Cotton, 200 mm x 270 mm, printed in France.",
-            images: ["images/TOTE BAG RECTOFULL.webp", "TOTE BAG VERSOFULL.webp", "images/TOTE LIFESTYLE.gif"],
+            images: ["images/TOTE BAG RECTOFULL.webp", "images/TOTE BAG VERSOFULL.webp", "images/TOTE LIFESTYLE.gif"],
             summary: null
         }
     ];

@@ -97,8 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
             btnFr.classList.toggle('active', product.lang === 'FR');
             btnEn.classList.toggle('active', product.lang === 'EN');
             
-            btnFr.onclick = () => window.location.href = `product.html?id=${product.baseId}-fr`;
-            btnEn.onclick = () => window.location.href = `product.html?id=${product.baseId}-en`;
+            btnFr.onclick = () => window.location.href = `/product?id=${product.baseId}-fr`;
+            btnEn.onclick = () => window.location.href = `/product?id=${product.baseId}-en`;
         } else {
             langSelector.style.display = 'none';
         }
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
         
         // Mise à jour de tous les boutons "Cart (X)" dans les headers
-        const cartButtons = document.querySelectorAll('a[href="cart.html"]');
+        const cartButtons = document.querySelectorAll('a[href="/cart"]');
         cartButtons.forEach(btn => {
             btn.textContent = `Cart (${totalQty})`;
             

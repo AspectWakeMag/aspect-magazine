@@ -98,8 +98,8 @@ app.post('/create-checkout-session', async (req, res) => {
         const session = await stripe.checkout.sessions.create({
             mode: 'payment',
             line_items,
-            success_url: `${FRONTEND_URL}/success.html?order_number=${orderNumber}`,
-            cancel_url: `${FRONTEND_URL}/cancel.html`,
+            success_url: `${FRONTEND_URL}/success?order_number=${orderNumber}`,
+            cancel_url: `${FRONTEND_URL}/cancel`,
 
             metadata: {
                 order_number: orderNumber,

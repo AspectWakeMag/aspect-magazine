@@ -8,8 +8,7 @@ const app = express();
 
 // L'URL du site sera définie par l'hébergeur (ex: https://ton-site.com)
 // IMPORTANT : On garde uniquement la racine pour éviter les erreurs de redirection
-const FRONTEND_URL = process.env.FRONTEND_URL || 'https://aspect-magazine.vercel.app';
-
+const FRONTEND_URL = process.env.FRONTEND_URL || '<https://aspectwakemag.fr>';
 app.use(cors({
     origin: FRONTEND_URL
 }));
@@ -69,6 +68,11 @@ app.post('/create-checkout-session', async (req, res) => {
             throw new Error('Le panier est vide ou invalide.');
         }
 
+        // Validation de la zone d'expédition
+        if (!['FR', 'EU'].includes(shippingZone)) {
+            throw new Error('Zone de livraison non supportée.');
+        }
+
         const orderNumber = `CMD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
         const line_items = items.map(item => {
@@ -78,9 +82,14 @@ app.post('/create-checkout-session', async (req, res) => {
                 throw new Error(`Price ID non trouvé pour l'article : ${item.id}`);
             }
 
+            // Validation stricte de la quantité
+            // Max 10 articles par type pour éviter les erreurs de saisie
+            let validatedQuantity = Math.max(1, parseInt(item.quantity) || 1);
+            validatedQuantity = Math.min(validatedQuantity, 100);
+
             return {
                 price: stripePriceId,
-                quantity: item.quantity,
+                quantity: validatedQuantity,
             };
         });
 
@@ -89,9 +98,8 @@ app.post('/create-checkout-session', async (req, res) => {
         const session = await stripe.checkout.sessions.create({
             mode: 'payment',
             line_items,
-            // Utilisation de la racine / pour éviter les erreurs de chemin index.html
-            success_url: `${FRONTEND_URL}/?status=success&order_number=${orderNumber}`,
-            cancel_url: `${FRONTEND_URL}/cart.html`,
+            success_url: `${FRONTEND_URL}/success.html?order_number=${orderNumber}`,
+            cancel_url: `${FRONTEND_URL}/cancel.html`,
 
             metadata: {
                 order_number: orderNumber,

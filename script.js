@@ -1,16 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 0. GESTION RETOUR PAIEMENT ---
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('status') === 'success') {
-        localStorage.removeItem('aspect_cart');
-        const orderNumber = urlParams.get('order_number');
-        if (orderNumber) {
-            // Petit délai pour s'assurer que le DOM est prêt
-            setTimeout(() => showOrderConfirmation(orderNumber), 500);
-        }
-    }
-
     // --- 1. DATA LAYER (Source de vérité) ---
     const PRODUCTS = [
         {
@@ -219,44 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
             cartOverlay.classList.remove('visible');
             document.body.classList.remove('modal-open');
         }, 2000);
-    }
-
-    // --- LOGIQUE POP-UP CONFIRMATION ---
-    function showOrderConfirmation(orderNumber) {
-        const overlay = document.createElement('div');
-        overlay.classList.add('order-overlay');
-        
-        overlay.innerHTML = `
-            <div class="order-modal">
-                <div class="modal-top">
-                    <p>Order n°${orderNumber}</p>
-                    <p>Check your email for order confirmation.</p>
-                </div>
-                <div class="modal-center">
-                    <p>Thank you<br>for your order.</p>
-                </div>
-                <div class="modal-bottom">
-                    <p>You can enjoy even more content<br>on our instagram 
-                       <a href="https://www.instagram.com/aspectwakemag/" target="_blank" class="btn-nav" style="opacity:1">@aspectwakemag</a>
-                    </p>
-                </div>
-            </div>
-        `;
-        
-        document.body.appendChild(overlay);
-        document.body.classList.add('modal-open');
-        setTimeout(() => overlay.classList.add('visible'), 10);
-
-        // Fermeture au clic sur l'overlay (autour du pop-up)
-        overlay.onclick = (e) => {
-            if (e.target === overlay) {
-                overlay.classList.remove('visible');
-                document.body.classList.remove('modal-open');
-                // Nettoie l'URL pour éviter que le pop-up revienne au refresh
-                window.history.replaceState({}, document.title, "/");
-                setTimeout(() => overlay.remove(), 400);
-            }
-        };
     }
 
     // --- MISE À JOUR DE L'INTERFACE ---
@@ -623,7 +574,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Compteur de pages
     const pageCounter = document.getElementById('page-counter');
-    const targetPages = 130;
+    const targetPages = 216;
     const counterDuration = 3700;
 
     // Compteur de pages synchronisé

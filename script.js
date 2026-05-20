@@ -5,16 +5,16 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'mag3-fr', baseId: 'mag3', lang: 'FR', title: "Aspect Magazine Numero 3", subtitle: "Cover by Detty Marie", price: 15.00,
             desc: "Find exclusive interviews with the world’s top riders, articles about the industry, and tips to improve your performance — a magazine by enthusiasts, for enthusiasts.",
-            specs: "130 pages, 200 mm x 270 mm, printed in France.",
+            specs: "216 pages, 200 mm x 270 mm, printed in France.",
             images: ["images/MAG 3 RECTOFULL.webp", "images/MAG 3 VERSOFULL.webp", "images/MAG 3 LIFESTYLEFULL.webp"],
-            summary: [["Roatrdip", "ROAD to LAO"], ["Contest", "LAO"], ["Interview", "Tino"], ["Art", "Soline Bourdon"], ["Young Guns", "Eva rivière"], ["Interlude", "Gottes Kinder"], ["Industrie", "Cabana Wakeskate"], ["Portrait", "Maxime Roux"], ["Video Club", "Spicy Tv"], ["Interview", "Enzo Asseraf"], ["Portrait", "Hervé Puyol"], ["Impact", "Prépa mentale, visualisation"], ["Carte blanche", "Max Evans"], ["Récit", "Jules Charraud, Winter Holidays"], ["Video", "Singularity project"], ["Portfolio", "Sam Strauss"], ["Video", "Vivid"], ["La playlist d'un rider", "Bobby Carne"], ["Playground", "Casse tête - Mots fléchés"]]
+            summary: [["Edito", "Aspect — A Tribute To Wakeboard"], ["La fin d’une époque", "TNS 73"], ["Video", "Winter Holidays"], ["Interview", "Tino"], ["Crew", "Cabana Wakeskate"], ["Carte blanche", "Max Evans"], ["Video", "Vivid"], ["Jukebox", "Bobby Carne"], ["Young Guns", "Eva rivière"], ["Portrait", "Maxime Roux"], ["DIY", "Mots fléchés"], ["Art", "Soline Bourdon"], ["The Hot Interview", "Spicy Tv"], ["Portrait", "Hervé Puyol"], ["Portfolio", "Sam Strauss"], ["Interview", "Enzo Asseraf"], ["Impact", "Prépa mentale, visualisation"], ["Movie", "Singularity project"]]
         },
         {
             id: 'mag3-en', baseId: 'mag3', lang: 'EN', title: "Aspect Magazine Numero 3", subtitle: "Cover by Detty Marie", price: 15.00,
             desc: "Find exclusive interviews with the world’s top riders, articles about the industry, and tips to improve your performance — a magazine by enthusiasts, for enthusiasts.",
-            specs: "130 pages, 200 mm x 270 mm, printed in France.",
+            specs: "216 pages, 200 mm x 270 mm, printed in France.",
             images: ["images/MAG 3 RECTOFULL.webp", "images/MAG 3 VERSOFULL.webp", "images/MAG 3 LIFESTYLEFULL.webp"],
-            summary: [["Roatrdip", "ROAD to LAO"], ["Contest", "LAO"], ["Interview", "Tino"], ["Art", "Soline Bourdon"], ["Young Guns", "Eva rivière"], ["Interlude", "Gottes Kinder"], ["Industrie", "Cabana Wakeskate"], ["Portrait", "Maxime Roux"], ["Video Club", "Spicy Tv"], ["Interview", "Enzo Asseraf"], ["Portrait", "Hervé Puyol"], ["Impact", "Prépa mentale, visualisation"], ["Carte blanche", "Max Evans"], ["Récit", "Jules Charraud, Winter Holidays"], ["Video", "Singularity project"], ["Portfolio", "Sam Strauss"], ["Video", "Vivid"], ["La playlist d'un rider", "Bobby Carne"], ["Playground", "Casse tête - Mots fléchés"]]
+            summary: [["Edito", "Aspect — A Tribute To Wakeboard"], ["La fin d’une époque", "TNS 73"], ["Video", "Winter Holidays"], ["Interview", "Tino"], ["Crew", "Cabana Wakeskate"], ["Carte blanche", "Max Evans"], ["Video", "Vivid"], ["Jukebox", "Bobby Carne"], ["Young Guns", "Eva rivière"], ["Portrait", "Maxime Roux"], ["DIY", "Mots fléchés"], ["Art", "Soline Bourdon"], ["The Hot Interview", "Spicy Tv"], ["Portrait", "Hervé Puyol"], ["Portfolio", "Sam Strauss"], ["Interview", "Enzo Asseraf"], ["Impact", "Prépa mentale, visualisation"], ["Movie", "Singularity project"]]
         },
         {
             id: 'mag2-fr', baseId: 'mag2', lang: 'FR', title: "Aspect Magazine Numero 2", subtitle: "Cover By Alexis Nilias", price: 10.00,

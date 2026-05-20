@@ -53,11 +53,11 @@ app.use(express.json());
 
 // ÉTAPE 1 : Le "Mapping" (Le lien entre ton site et le catalogue Stripe)
 const STRIPE_PRICE_MAPPING = {
-    'mag3-fr': 'price_1TM4AwHc9K6ONRvog5MPHyKj',
-    'mag3-en': 'price_1TM4BZHc9K6ONRvosH3nqMcy',
-    'mag2-fr': 'price_1TM97KHc9K6ONRvobkL3fTEU',
-    'mag1-fr': 'price_1TM9AqHc9K6ONRvoBZn28US4',
-    'totebag': 'price_1TM9BQHc9K6ONRvoYGyx8gv5'
+    'mag3-fr': 'price_1TZAYCHZWrOotYhqxKRh8MnV',
+    'mag3-en': 'price_1TZAYfHZWrOotYhqarAB8uZ5',
+    'mag2-fr': 'price_1TZAWoHZWrOotYhqtyV6Y3Nx',
+    'mag1-fr': 'price_1TZAVIHZWrOotYhquUfJYqXx',
+    'totebag': 'price_1TZAXIHZWrOotYhq7AxKd6Oj'
 };
 
 app.post('/create-checkout-session', async (req, res) => {

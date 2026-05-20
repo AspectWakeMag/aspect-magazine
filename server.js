@@ -120,7 +120,7 @@ app.post('/create-checkout-session', async (req, res) => {
             },
             
             shipping_options: [
-                { shipping_rate: shippingZone === 'FR' ? 'shr_1TM1RnHc9K6ONRvomamTK7TZ' : 'shr_1TM1S9Hc9K6ONRvoQFhiPXHT' }
+                { shipping_rate: shippingZone === 'FR' ? 'shr_1TZAldHZWrOotYhqysLBT4Lp' : 'shr_1TZAmLHZWrOotYhqECVJPmQP' }
             ],
 
             // Création automatique de facture/reçu

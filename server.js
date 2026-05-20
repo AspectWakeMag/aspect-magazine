@@ -101,6 +101,9 @@ app.post('/create-checkout-session', async (req, res) => {
             success_url: `${FRONTEND_URL}/success?order_number=${orderNumber}`,
             cancel_url: `${FRONTEND_URL}/cancel`,
 
+            // Active le champ pour les codes promo sur la page Stripe
+            allow_promotion_codes: true,
+
             metadata: {
                 order_number: orderNumber,
                 products: JSON.stringify(items.map(item => ({ 

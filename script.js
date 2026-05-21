@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             desc: "Find exclusive interviews with the world’s top riders, articles about the industry, and tips to improve your performance.",
             specs: "136 pages, 200 mm x 270 mm, printed in France, magazine in French.",
             images: ["images/MAG 1 RECTOFULL.webp", "images/MAG 1 VERSOFULL.webp", "images/MAG 1 LIFESTYLEFULL.webp"],
-            stockLimit: 6,
+            stockLimit: 2,
             summary: [["Interview", "Tao, Innovation continue"], ["Chronique", "Les Copains d’abords"], ["Report", "Wakeskate Cup"], ["Backside/Frontside", "Les Sœurs Rougerie"], ["Trip", "Un paradis…ca se mérite"], ["Échanges", "Contest, (R)evolution"], ["Interview", "Copycatsclub"], ["Report", "Wakeboard Street Jam"], ["Matos 2024", "Suivez le guide"], ["Framed", "Mathilde Revil"], ["Impact", "Ôde a la blessure"], ["Trip", "Yardsale 5"], ["Young Blood", "Esteban Diruy"], ["Art", "Kathleen Neeley"], ["Portfolio", "Bryan Soderlind"], ["Diy", "Répare ta planche !"]]
         },
         {

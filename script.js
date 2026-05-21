@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             summary: [["Photo report", "Ys6"], ["Backside - frontside", "Trent & Gavin Stuckey"], ["Interview", "Ile Vegni"], ["Opinion", "Les bases sacrées de la Force"], ["Interview", "Hexa : un crew et une Jam nouvelle générartion"], ["Portfolio", "Steffen Vollert, tour après tour"], ["Contest report", "Red Bull Wake the City"], ["Art", "Nane et les 15 ans de la Peak"], ["Legends", "Shred Town : à l'origine d'une révolution"], ["Impact", "Bien préparer sa saison"], ["Portrait", "Dom Hernler"], ["Opinion", "Une vidéo pas comme les autres"], ["Portrait", "Maxime Cadoux"], ["Framed", "Dans les coulisses du Sitwake"], ["Interview", "Loic Deschaux & Robin Carayol"], ["Portrait", "Maryh Rougier"], ["Diy", "Le guide du parfait Wakepants"], ["Photo", "Sewer cats"]]
         },
         {
-            id: 'mag1-fr', baseId: 'mag1', lang: 'FR', title: "Aspect Magazine Numero 1", subtitle: "Cover By Sam Strauss", price: 10.00,
+            id: 'mag1-fr', baseId: 'mag1', lang: 'FR', title: "Aspect Magazine Numero 1", subtitle: "Cover By Piwi Gobillard", price: 10.00,
             desc: "Find exclusive interviews with the world’s top riders, articles about the industry, and tips to improve your performance.",
             specs: "136 pages, 200 mm x 270 mm, printed in France, magazine in French.",
             images: ["images/MAG 1 RECTOFULL.webp", "images/MAG 1 VERSOFULL.webp", "images/MAG 1 LIFESTYLEFULL.webp"],

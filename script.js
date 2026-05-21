@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'totebag', baseId: 'totebag', lang: 'Unique', title: "Aspect Tote Bag", subtitle: "100% Cotton", price: 15.00,
             desc: "High quality 100% cotton tote bag, perfect for your daily gear.",
-            specs: "100% Cotton, 200 mm x 270 mm, printed in France.",
+            specs: "100% Cotton, printed in France.",
             images: ["images/TOTE BAG RECTOFULL.webp", "images/TOTE BAG VERSOFULL.webp", "images/TOTE LIFESTYLE.gif"],
             summary: null
         }

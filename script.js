@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             desc: "Find exclusive interviews with the world’s top riders, articles about the industry, and tips to improve your performance.",
             specs: "136 pages, 200 mm x 270 mm, Printed in France, Magazine in French.",
             images: ["images/MAG 1 RECTOFULL.webp", "images/MAG 1 VERSOFULL.webp", "images/MAG 1 LIFESTYLEFULL.webp"],
-            stockLimit: 2,
+            outOfStock: true,
             summary: [["Interview", "Tao, Innovation continue"], ["Chronique", "Les Copains d’abords"], ["Report", "Wakeskate Cup"], ["Backside/Frontside", "Les Sœurs Rougerie"], ["Trip", "Un paradis…ca se mérite"], ["Échanges", "Contest, (R)evolution"], ["Interview", "Copycatsclub"], ["Report", "Wakeboard Street Jam"], ["Matos 2024", "Suivez le guide"], ["Framed", "Mathilde Revil"], ["Impact", "Ôde a la blessure"], ["Trip", "Yardsale 5"], ["Young Blood", "Esteban Diruy"], ["Art", "Kathleen Neeley"], ["Portfolio", "Bryan Soderlind"], ["Diy", "Répare ta planche !"]]
         },
         {
@@ -103,13 +103,24 @@ document.addEventListener('DOMContentLoaded', () => {
             langSelector.style.display = 'none';
         }
 
-        if (product.stockLimit) {
+        const addToCartBtn = document.getElementById('add-to-cart-dynamic');
+        if (product.outOfStock) {
+            addToCartBtn.textContent = "Out of stock";
+            addToCartBtn.disabled = true;
+            addToCartBtn.onclick = null;
+        } else {
+            addToCartBtn.textContent = "Add to cart";
+            addToCartBtn.disabled = false;
+            addToCartBtn.onclick = () => addToCart(product.id);
+        }
+
+        if (product.stockLimit && !product.outOfStock) {
             const stockEl = document.getElementById('p-stock');
             stockEl.textContent = `only ${product.stockLimit} magazine left`;
             stockEl.style.display = 'block';
+        } else {
+            document.getElementById('p-stock').style.display = 'none';
         }
-
-        document.getElementById('add-to-cart-dynamic').onclick = () => addToCart(product.id);
     };
 
     // Synchronisation automatique des prix dans tout le site (Shop, etc.)
@@ -133,6 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const addToCart = (productId) => {
         const product = getProductById(productId);
+        if (product.outOfStock) return;
+
         const cart = getCart();
         const existingItem = cart.find(item => item.id === productId);
 

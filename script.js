@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 'mag3-en', baseId: 'mag3', lang: 'EN', title: "Aspect Magazine Numero 3", subtitle: "Cover by Detty Marie", price: 15.00,
             desc: "Find exclusive interviews with the world’s top riders, articles about the industry, and tips to improve your performance — a magazine by enthusiasts, for enthusiasts.",
-            specs: "216 pages, 200 mm x 270 mm, Printed in France.",
+            specs: "216 pages, 200 mm x 270 mm, Printed in Francia.",
             images: ["images/MAG 3 RECTOFULL.webp", "images/MAG 3 VERSOFULL.webp", "images/MAG 3 LIFESTYLEFULL.webp"],
             outOfStock: true,
             summary: [["Edito", "Aspect — A Tribute To Wakeboard"], ["La fin d’une époque", "TNS 73"], ["Video", "Winter Holidays"], ["Interview", "Tino"], ["Crew", "Cabana Wakeskate"], ["Carte blanche", "Max Evans"], ["Video", "Vivid"], ["Jukebox", "Bobby Carne"], ["Young Guns", "Eva rivière"], ["Portrait", "Maxime Roux"], ["DIY", "Mots fléchés"], ["Art", "Soline Bourdon"], ["The Hot Interview", "Spicy Tv"], ["Portrait", "Hervé Puyol"], ["Portfolio", "Sam Strauss"], ["Interview", "Enzo Asseraf"], ["Impact", "Prépa mentale, visualisation"], ["Movie", "Singularity project"]]

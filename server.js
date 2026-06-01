@@ -53,8 +53,8 @@ app.use(express.json());
 
 // ÉTAPE 1 : Le "Mapping" (Le lien entre ton site et le catalogue Stripe)
 const STRIPE_PRICE_MAPPING = {
-    'mag3-fr': 'price_1TZAYCHZWrOotYhqxKRh8MnV',
-    'mag3-en': 'price_1TZAYfHZWrOotYhqarAB8uZ5',
+    'mag3-fr': 'price_1TdRF3HZWrOotYhqSRqdMZJd',
+    'mag3-en': 'price_1TdREEHZWrOotYhqIwO4Veop',
     'mag2-fr': 'price_1TZAWoHZWrOotYhqtyV6Y3Nx',
     'mag1-fr': 'price_1TZAVIHZWrOotYhquUfJYqXx',
     'totebag': 'price_1TZAXIHZWrOotYhq7AxKd6Oj'
